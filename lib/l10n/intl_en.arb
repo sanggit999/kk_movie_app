@@ -1,0 +1,18 @@
+{
+  "@@locale": "en",
+  "appTitle": "KK Movies",
+  "login": "Login",
+  "logOut": "Log out",
+  "signUp": "Sign Up",
+  "home": "Home",
+  "search": "Search",
+  "profile": "Profile",
+  "language": "Language",
+
+  "email": "Email",
+  "password": "Password",
+  "or": "Or",
+
+  "English": "English",
+  "Vietnamese": "Vietnamese"
+}

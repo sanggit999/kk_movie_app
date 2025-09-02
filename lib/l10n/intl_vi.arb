@@ -1,0 +1,19 @@
+{
+  "@@locale": "vi",
+  "appTitle": "KK Movies",
+  "login": "Đăng nhập",
+  "logOut": "Đăng xuất",
+  "signUp": "Đăng ký",
+  "home": "Trang chủ",
+  "search": "Tìm kiếm",
+  "profile": "Hồ sơ",
+  "language": "Ngôn ngữ",
+
+
+  "email": "Email",
+  "password": "Mật khẩu",
+  "or": "Hoặc",
+
+  "English": "Tiếng Anh",
+  "Vietnamese": "Tiếng Việt"
+}

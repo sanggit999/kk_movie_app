@@ -8,8 +8,9 @@ class AppTheme {
       secondary: Colors.grey.shade100,
       tertiary: Colors.white,
       inversePrimary: Colors.grey.shade900,
+      error: Colors.red.shade700,
     ),
-    scaffoldBackgroundColor: Colors.grey.shade100,
+    scaffoldBackgroundColor: Colors.grey.shade300,
   );
 
   static ThemeData darkMode = ThemeData(
@@ -18,6 +19,7 @@ class AppTheme {
       secondary: const Color.fromARGB(255, 15, 15, 15),
       tertiary: const Color.fromARGB(255, 35, 35, 35),
       inversePrimary: Colors.grey.shade300,
+      error: Colors.red.shade700,
     ),
     scaffoldBackgroundColor: const Color.fromARGB(255, 25, 25, 25),
   );

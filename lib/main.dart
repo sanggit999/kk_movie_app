@@ -1,23 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:kk_movie_app/di.dart';
+import 'package:kk_movie_app/common/cubit/language_cubit.dart';
+import 'package:kk_movie_app/l10n/l10n.dart';
+import 'package:kk_movie_app/presentation/profile/pages/language_page.dart';
 import 'package:kk_movie_app/themes/app_theme.dart';
 import 'package:kk_movie_app/presentation/splash/pages/splash_page.dart';
+import 'package:kk_movie_app/presentation/auth/pages/login_page.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  await initDependencies();
+  runApp(
+    MultiBlocProvider(
+      providers: [BlocProvider.value(value: getIt<LanguageCubit>())],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'KK Movie',
-      theme: AppTheme.lightMode,
-      darkTheme: AppTheme.darkMode,
-      themeMode: ThemeMode.system,
-      debugShowCheckedModeBanner: false,
-      home: const SplashPage(),
+    return BlocBuilder<LanguageCubit, Locale>(
+      builder: (context, locale) {
+        return MaterialApp(
+          title: 'KK Movies',
+          theme: AppTheme.lightMode,
+          darkTheme: AppTheme.darkMode,
+          themeMode: ThemeMode.system,
+          debugShowCheckedModeBanner: false,
+          localizationsDelegates: [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: S.delegate.supportedLocales,
+          locale: locale,
+          home: const LanguagePage(),
+        );
+      },
     );
   }
 }
