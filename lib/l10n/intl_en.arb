@@ -9,9 +9,15 @@
   "profile": "Profile",
   "language": "Language",
 
+  "name": "Name",
   "email": "Email",
   "password": "Password",
-  "or": "Or",
+  "confirmPassword": "Confirm Password",
+  "forgotPassword": "Forgot Password?",
+  "noAccount": "Don't have an account? ",
+  "haveAccount": "Already have an account? ",
+  "orSignInWith": "Or sign in with",
+  "orSignUpWith": "Or sign up with",
 
   "English": "English",
   "Vietnamese": "Vietnamese"

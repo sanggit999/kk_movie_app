@@ -7,13 +7,13 @@ import 'package:kk_movie_app/presentation/auth/widgets/auth_divider.dart';
 import 'package:kk_movie_app/presentation/auth/widgets/auth_rich_text.dart';
 import 'package:kk_movie_app/presentation/auth/widgets/google_button.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class SignUpPage extends StatelessWidget {
+  const SignUpPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar(hideLeading: true, title: Text(S.current.login)),
+      appBar: BaseAppBar(hideLeading: true, title: Text(S.current.signUp)),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -21,6 +21,11 @@ class LoginPage extends StatelessWidget {
             child: Column(
               spacing: 20.0,
               children: [
+                SizedBox(),
+                BaseTextFormField(
+                  hintText: S.current.name,
+                  keyboardType: TextInputType.name,
+                ),
                 BaseTextFormField(
                   hintText: S.current.email,
                   keyboardType: TextInputType.emailAddress,
@@ -30,31 +35,19 @@ class LoginPage extends StatelessWidget {
                   keyboardType: TextInputType.text,
                   obscureText: true,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        print('Forgot Password tapped');
-                      },
-                      child: Text(
-                        S.current.forgotPassword,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.inversePrimary,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ],
+                BaseTextFormField(
+                  hintText: S.current.confirmPassword,
+                  keyboardType: TextInputType.text,
+                  obscureText: true,
                 ),
+                SizedBox(height: 20.0),
                 BaseElevatedButton(
-                  title: S.current.login,
+                  title: S.current.signUp,
                   onPressed: () {
-                    print('Login button pressed');
+                    print('Signup button pressed');
                   },
                 ),
-                AuthDivider(text: S.current.orSignInWith),
+                AuthDivider(text: S.current.orSignUpWith),
                 GoogleButton(
                   onTap: () {
                     print('Google Sign-In button tapped');
@@ -64,8 +57,8 @@ class LoginPage extends StatelessWidget {
                   onTap: () {
                     print('SignUp now tapped');
                   },
-                  prefixText: S.current.noAccount,
-                  actionText: S.current.signUp,
+                  prefixText: S.current.haveAccount,
+                  actionText: S.current.login,
                 ),
               ],
             ),

@@ -94,6 +94,11 @@ class S {
     return Intl.message('Language', name: 'language', desc: '', args: []);
   }
 
+  /// `Name`
+  String get name {
+    return Intl.message('Name', name: 'name', desc: '', args: []);
+  }
+
   /// `Email`
   String get email {
     return Intl.message('Email', name: 'email', desc: '', args: []);
@@ -104,9 +109,64 @@ class S {
     return Intl.message('Password', name: 'password', desc: '', args: []);
   }
 
-  /// `Or`
-  String get or {
-    return Intl.message('Or', name: 'or', desc: '', args: []);
+  /// `Confirm Password`
+  String get confirmPassword {
+    return Intl.message(
+      'Confirm Password',
+      name: 'confirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forgot Password?`
+  String get forgotPassword {
+    return Intl.message(
+      'Forgot Password?',
+      name: 'forgotPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don't have an account? `
+  String get noAccount {
+    return Intl.message(
+      'Don\'t have an account? ',
+      name: 'noAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Already have an account? `
+  String get haveAccount {
+    return Intl.message(
+      'Already have an account? ',
+      name: 'haveAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Or sign in with`
+  String get orSignInWith {
+    return Intl.message(
+      'Or sign in with',
+      name: 'orSignInWith',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Or sign up with`
+  String get orSignUpWith {
+    return Intl.message(
+      'Or sign up with',
+      name: 'orSignUpWith',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `English`

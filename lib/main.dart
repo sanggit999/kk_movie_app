@@ -4,8 +4,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:kk_movie_app/di.dart';
 import 'package:kk_movie_app/common/cubit/language_cubit.dart';
 import 'package:kk_movie_app/l10n/l10n.dart';
-import 'package:kk_movie_app/presentation/profile/pages/language_page.dart';
 import 'package:kk_movie_app/themes/app_theme.dart';
+import 'package:kk_movie_app/presentation/auth/pages/signup_page.dart';
+import 'package:kk_movie_app/presentation/profile/pages/language_page.dart';
 import 'package:kk_movie_app/presentation/splash/pages/splash_page.dart';
 import 'package:kk_movie_app/presentation/auth/pages/login_page.dart';
 
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
           ],
           supportedLocales: S.delegate.supportedLocales,
           locale: locale,
-          home: const LanguagePage(),
+          home: const SignUpPage(),
         );
       },
     );

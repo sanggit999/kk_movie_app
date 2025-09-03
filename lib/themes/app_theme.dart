@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AppTheme {
   AppTheme._();
   static ThemeData lightMode = ThemeData(
+    fontFamily: 'Roboto',
     colorScheme: ColorScheme.light(
       primary: Colors.grey.shade600,
       secondary: Colors.grey.shade100,
@@ -14,6 +15,7 @@ class AppTheme {
   );
 
   static ThemeData darkMode = ThemeData(
+    fontFamily: 'Roboto',
     colorScheme: ColorScheme.dark(
       primary: const Color.fromARGB(255, 105, 105, 105),
       secondary: const Color.fromARGB(255, 15, 15, 15),

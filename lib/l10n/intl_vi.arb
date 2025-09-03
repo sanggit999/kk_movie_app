@@ -9,10 +9,15 @@
   "profile": "Hồ sơ",
   "language": "Ngôn ngữ",
 
-
+  "name": "Tên",
   "email": "Email",
   "password": "Mật khẩu",
-  "or": "Hoặc",
+  "confirmPassword": "Xác nhận mật khẩu",
+  "forgotPassword": "Quên mật khẩu?",
+  "noAccount": "Chưa có tài khoản? ",
+  "haveAccount": "Đã có tài khoản? ",
+  "orSignInWith": "Hoặc đăng nhập với",
+  "orSignUpWith": "Hoặc đăng ký với",
 
   "English": "Tiếng Anh",
   "Vietnamese": "Tiếng Việt"

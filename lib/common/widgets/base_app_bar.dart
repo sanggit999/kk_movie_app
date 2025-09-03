@@ -22,6 +22,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: title ?? const Text(''),
+      titleTextStyle: TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.inversePrimary),
       centerTitle: centerTitle,
       titleSpacing: 0,
       elevation: 0,

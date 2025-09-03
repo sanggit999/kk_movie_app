@@ -50,17 +50,30 @@ class _BaseTextFormFieldState extends State<BaseTextFormField> {
         filled: true,
         fillColor: Theme.of(context).colorScheme.secondary,
         hintText: widget.hintText,
-        hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
+        hintStyle: TextStyle(
+          fontSize: 16.0,
+          fontWeight: FontWeight.w400,
+          color: Theme.of(context).colorScheme.primary,
+        ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Theme.of(context).colorScheme.tertiary),
+          borderSide: BorderSide(
+            color: Theme.of(context).colorScheme.tertiary,
+            width: 2.0,
+          ),
           borderRadius: BorderRadius.circular(12.0),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Theme.of(context).colorScheme.primary),
+          borderSide: BorderSide(
+            color: Theme.of(context).colorScheme.inversePrimary,
+            width: 2.0,
+          ),
           borderRadius: BorderRadius.circular(12.0),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
+          borderSide: BorderSide(
+            color: Theme.of(context).colorScheme.error,
+            width: 2.0,
+          ),
           borderRadius: BorderRadius.circular(12.0),
         ),
         suffixIcon:
