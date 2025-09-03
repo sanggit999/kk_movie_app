@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "English": MessageLookupByLibrary.simpleMessage("English"),
     "Vietnamese": MessageLookupByLibrary.simpleMessage("Vietnamese"),
     "appTitle": MessageLookupByLibrary.simpleMessage("KK Movies"),
+    "categories": MessageLookupByLibrary.simpleMessage("Categories"),
     "confirmPassword": MessageLookupByLibrary.simpleMessage("Confirm Password"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
@@ -45,5 +46,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "search": MessageLookupByLibrary.simpleMessage("Search"),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+    "watchlist": MessageLookupByLibrary.simpleMessage("Watchlist"),
   };
 }

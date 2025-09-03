@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:kk_movie_app/di.dart';
-import 'package:kk_movie_app/common/cubit/language_cubit.dart';
 import 'package:kk_movie_app/l10n/l10n.dart';
+import 'package:kk_movie_app/router/app_router.dart';
+import 'package:kk_movie_app/di.dart';
 import 'package:kk_movie_app/themes/app_theme.dart';
-import 'package:kk_movie_app/presentation/auth/pages/signup_page.dart';
-import 'package:kk_movie_app/presentation/profile/pages/language_page.dart';
-import 'package:kk_movie_app/presentation/splash/pages/splash_page.dart';
-import 'package:kk_movie_app/presentation/auth/pages/login_page.dart';
+import 'package:kk_movie_app/common/cubit/language_cubit.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LanguageCubit, Locale>(
       builder: (context, locale) {
-        return MaterialApp(
+        return MaterialApp.router(
           title: 'KK Movies',
           theme: AppTheme.lightMode,
           darkTheme: AppTheme.darkMode,
@@ -41,7 +38,7 @@ class MyApp extends StatelessWidget {
           ],
           supportedLocales: S.delegate.supportedLocales,
           locale: locale,
-          home: const SignUpPage(),
+          routerConfig: AppRouter.router,
         );
       },
     );

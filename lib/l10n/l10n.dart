@@ -89,6 +89,16 @@ class S {
     return Intl.message('Profile', name: 'profile', desc: '', args: []);
   }
 
+  /// `Categories`
+  String get categories {
+    return Intl.message('Categories', name: 'categories', desc: '', args: []);
+  }
+
+  /// `Watchlist`
+  String get watchlist {
+    return Intl.message('Watchlist', name: 'watchlist', desc: '', args: []);
+  }
+
   /// `Language`
   String get language {
     return Intl.message('Language', name: 'language', desc: '', args: []);

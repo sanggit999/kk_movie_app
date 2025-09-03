@@ -21,7 +21,7 @@ class SignUpPage extends StatelessWidget {
             child: Column(
               spacing: 20.0,
               children: [
-                SizedBox(),
+                const SizedBox(),
                 BaseTextFormField(
                   hintText: S.current.name,
                   keyboardType: TextInputType.name,
@@ -40,7 +40,7 @@ class SignUpPage extends StatelessWidget {
                   keyboardType: TextInputType.text,
                   obscureText: true,
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 BaseElevatedButton(
                   title: S.current.signUp,
                   onPressed: () {

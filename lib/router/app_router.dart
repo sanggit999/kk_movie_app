@@ -1,0 +1,149 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:kk_movie_app/router/app_routes.dart';
+import 'package:kk_movie_app/l10n/l10n.dart';
+import 'package:kk_movie_app/presentation/splash/pages/splash_page.dart';
+import 'package:kk_movie_app/presentation/auth/pages/login_page.dart';
+import 'package:kk_movie_app/presentation/auth/pages/signup_page.dart';
+import 'package:kk_movie_app/presentation/home/pages/home_page.dart';
+import 'package:kk_movie_app/presentation/categories/pages/categories_page.dart';
+import 'package:kk_movie_app/presentation/profile/pages/profile_page.dart';
+import 'package:kk_movie_app/presentation/search/pages/search_page.dart';
+import 'package:kk_movie_app/presentation/watchlist/pages/watchlist_page.dart';
+import 'package:kk_movie_app/presentation/profile/pages/language_page.dart';
+
+class AppRouter {
+  AppRouter._();
+
+  static final GoRouter router = GoRouter(
+    initialLocation: AppRoutes.home,
+    routes: [
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) {
+          return Scaffold(
+            body: navigationShell,
+            bottomNavigationBar: BottomNavigationBar(
+              currentIndex: navigationShell.currentIndex,
+              onTap: (index) => navigationShell.goBranch(index),
+              type: BottomNavigationBarType.fixed,
+              showUnselectedLabels: false,
+              showSelectedLabels: true,
+              selectedItemColor: Theme.of(context).colorScheme.inversePrimary,
+              unselectedItemColor: Theme.of(context).colorScheme.primary,
+              selectedLabelStyle: const TextStyle(
+                fontSize: 14.0,
+                fontWeight: FontWeight.bold,
+              ),
+              items: [
+                BottomNavigationBarItem(
+                  icon: const Icon(Icons.home),
+                  label: S.current.home,
+                ),
+                BottomNavigationBarItem(
+                  icon: const Icon(Icons.category),
+                  label: S.current.categories,
+                ),
+                BottomNavigationBarItem(
+                  icon: const Icon(Icons.search),
+                  label: S.current.search,
+                ),
+                BottomNavigationBarItem(
+                  icon: const Icon(Icons.bookmark),
+                  label: S.current.watchlist,
+                ),
+                BottomNavigationBarItem(
+                  icon: const Icon(Icons.person),
+                  label: S.current.profile,
+                ),
+              ],
+            ),
+          );
+        },
+        branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.home,
+                name: AppRoutes.home,
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: HomePage()),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.categories,
+                name: AppRoutes.categories,
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: CategoriesPage()),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.search,
+                name: AppRoutes.search,
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: SearchPage()),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.watchlist,
+                name: AppRoutes.watchlist,
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: WatchlistPage()),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.profile,
+                name: AppRoutes.profile,
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: ProfilePage()),
+              ),
+            ],
+          ),
+        ],
+      ),
+
+      GoRoute(
+        path: AppRoutes.splash,
+        name: AppRoutes.splash,
+        builder: (context, state) {
+          return const SplashPage();
+        },
+      ),
+
+      GoRoute(
+        path: AppRoutes.login,
+        name: AppRoutes.login,
+        builder: (context, state) {
+          return const LoginPage();
+        },
+      ),
+
+      GoRoute(
+        path: AppRoutes.signup,
+        name: AppRoutes.signup,
+        builder: (context, state) {
+          return const SignUpPage();
+        },
+      ),
+
+      GoRoute(
+        path: AppRoutes.language,
+        name: AppRoutes.language,
+        builder: (context, state) {
+          return const LanguagePage();
+        },
+      ),
+    ],
+  );
+}

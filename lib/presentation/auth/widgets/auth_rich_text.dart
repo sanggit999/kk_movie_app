@@ -24,7 +24,7 @@ class AuthRichText extends StatelessWidget {
           fontWeight: FontWeight.w500,
         ),
         children: [
-          WidgetSpan(child: SizedBox(width: 4.0)),
+          const WidgetSpan(child: SizedBox(width: 4.0)),
           TextSpan(
             text: actionText,
             style: TextStyle(

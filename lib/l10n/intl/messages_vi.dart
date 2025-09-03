@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "English": MessageLookupByLibrary.simpleMessage("Tiếng Anh"),
     "Vietnamese": MessageLookupByLibrary.simpleMessage("Tiếng Việt"),
     "appTitle": MessageLookupByLibrary.simpleMessage("KK Movies"),
+    "categories": MessageLookupByLibrary.simpleMessage("Thể loại"),
     "confirmPassword": MessageLookupByLibrary.simpleMessage(
       "Xác nhận mật khẩu",
     ),
@@ -43,5 +44,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "profile": MessageLookupByLibrary.simpleMessage("Hồ sơ"),
     "search": MessageLookupByLibrary.simpleMessage("Tìm kiếm"),
     "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký"),
+    "watchlist": MessageLookupByLibrary.simpleMessage("Xem sau"),
   };
 }

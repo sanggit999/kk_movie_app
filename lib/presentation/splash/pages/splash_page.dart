@@ -6,7 +6,7 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 25, 25, 25),
+      backgroundColor: const Color.fromARGB(255, 25, 25, 25),
       body: Center(child: Image.asset('assets/images/splash_logo.png',)),
     );
   }
