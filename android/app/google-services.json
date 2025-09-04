@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "182351976362",
+    "project_id": "kk-movies-999",
+    "storage_bucket": "kk-movies-999.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:182351976362:android:d67b35721a2871ce967dd3",
+        "android_client_info": {
+          "package_name": "com.example.kk_movie_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "182351976362-dlc7cqmb30gpvc5h7c2dqrsdntaqta8o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWz9kSijM69njC9xeaSyxKiU9VsZxKnoQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "182351976362-dlc7cqmb30gpvc5h7c2dqrsdntaqta8o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
