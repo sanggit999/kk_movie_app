@@ -28,14 +28,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "categories": MessageLookupByLibrary.simpleMessage("Categories"),
     "confirmPassword": MessageLookupByLibrary.simpleMessage("Confirm Password"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
-    "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
+    "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password"),
     "haveAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account? ",
     ),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
-    "logOut": MessageLookupByLibrary.simpleMessage("Log out"),
-    "login": MessageLookupByLibrary.simpleMessage("Login"),
     "name": MessageLookupByLibrary.simpleMessage("Name"),
     "noAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account? ",
@@ -44,7 +42,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "orSignUpWith": MessageLookupByLibrary.simpleMessage("Or sign up with"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+    "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
     "search": MessageLookupByLibrary.simpleMessage("Search"),
+    "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
+    "signOut": MessageLookupByLibrary.simpleMessage("Sign out"),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
     "watchlist": MessageLookupByLibrary.simpleMessage("Watchlist"),
   };

@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:kk_movie_app/common/widgets/base_app_bar.dart';
 import 'package:kk_movie_app/common/widgets/base_elevated_button.dart';
 import 'package:kk_movie_app/common/widgets/base_text_form_field.dart';
-import 'package:kk_movie_app/data/auth/models/user_signup_req.dart';
+import 'package:kk_movie_app/data/auth/models/user_login_req.dart';
 import 'package:kk_movie_app/l10n/l10n.dart';
 import 'package:kk_movie_app/presentation/auth/cubit/auth_cubit.dart';
 import 'package:kk_movie_app/presentation/auth/cubit/auth_state.dart';
@@ -13,33 +13,29 @@ import 'package:kk_movie_app/presentation/auth/widgets/auth_rich_text.dart';
 import 'package:kk_movie_app/presentation/auth/widgets/google_button.dart';
 import 'package:kk_movie_app/router/app_routes.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class SignInPage extends StatefulWidget {
+  const SignInPage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<SignInPage> createState() => _SignInPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignInPageState extends State<SignInPage> {
   final formKey = GlobalKey<FormState>();
-  final nameController = TextEditingController();
   final emailController = TextEditingController();
   final pwController = TextEditingController();
-  final confirmPwController = TextEditingController();
 
   @override
   void dispose() {
-    nameController.dispose();
     emailController.dispose();
     pwController.dispose();
-    confirmPwController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar(title: Text(S.current.signUp)),
+      appBar: BaseAppBar(hideLeading: true, title: Text(S.current.signIn)),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -54,18 +50,11 @@ class _SignUpPageState extends State<SignUpPage> {
                 if (state is AuthLoading) {
                   return const Center(child: CircularProgressIndicator());
                 }
-
                 return Form(
                   key: formKey,
                   child: Column(
                     spacing: 20.0,
                     children: [
-                      const SizedBox(),
-                      BaseTextFormField(
-                        controller: nameController,
-                        hintText: S.current.name,
-                        keyboardType: TextInputType.name,
-                      ),
                       BaseTextFormField(
                         controller: emailController,
                         hintText: S.current.email,
@@ -77,39 +66,58 @@ class _SignUpPageState extends State<SignUpPage> {
                         keyboardType: TextInputType.text,
                         obscureText: true,
                       ),
-                      BaseTextFormField(
-                        controller: confirmPwController,
-                        hintText: S.current.confirmPassword,
-                        keyboardType: TextInputType.text,
-                        obscureText: true,
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              context.push(AppRoutes.forgotPassword);
+                              print('Forgot Password tapped');
+                            },
+                            child: Text(
+                              '${S.current.forgotPassword}?',
+                              style: TextStyle(
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.inversePrimary,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 20.0),
+
                       BaseElevatedButton(
-                        title: S.current.signUp,
+                        title: S.current.signIn,
                         onPressed: () {
-                          context.read<AuthCubit>().signup(
-                            UserSignUpReq(
+                          context.read<AuthCubit>().signin(
+                            UserLoginReq(
                               email: emailController.text,
                               password: pwController.text,
-                              name: nameController.text,
                             ),
                           );
-                          print('Signup button pressed');
+                          print('Login button pressed');
                         },
                       ),
-                      AuthDivider(text: S.current.orSignUpWith),
+
+                      AuthDivider(text: S.current.orSignInWith),
+
                       GoogleButton(
                         onTap: () {
                           context.read<AuthCubit>().signInWithGoogle();
                           print('Google Sign-In button tapped');
                         },
                       ),
+
                       AuthRichText(
                         onTap: () {
+                          context.push(AppRoutes.signup);
                           print('SignUp now tapped');
                         },
-                        prefixText: S.current.haveAccount,
-                        actionText: S.current.signIn,
+                        prefixText: S.current.noAccount,
+                        actionText: S.current.signUp,
                       ),
                     ],
                   ),

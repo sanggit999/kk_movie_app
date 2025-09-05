@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kk_movie_app/presentation/auth/pages/forgot_password_page.dart';
 import 'package:kk_movie_app/router/app_routes.dart';
 import 'package:kk_movie_app/l10n/l10n.dart';
 import 'package:kk_movie_app/presentation/splash/pages/splash_page.dart';
-import 'package:kk_movie_app/presentation/auth/pages/login_page.dart';
+import 'package:kk_movie_app/presentation/auth/pages/signin_page.dart';
 import 'package:kk_movie_app/presentation/auth/pages/signup_page.dart';
 import 'package:kk_movie_app/presentation/home/pages/home_page.dart';
 import 'package:kk_movie_app/presentation/categories/pages/categories_page.dart';
@@ -16,7 +17,7 @@ class AppRouter {
   AppRouter._();
 
   static final GoRouter router = GoRouter(
-    initialLocation: AppRoutes.home,
+    initialLocation: AppRoutes.splash,
     routes: [
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
@@ -122,10 +123,10 @@ class AppRouter {
       ),
 
       GoRoute(
-        path: AppRoutes.login,
-        name: AppRoutes.login,
+        path: AppRoutes.signin,
+        name: AppRoutes.signin,
         builder: (context, state) {
-          return const LoginPage();
+          return const SignInPage();
         },
       ),
 
@@ -134,6 +135,14 @@ class AppRouter {
         name: AppRoutes.signup,
         builder: (context, state) {
           return const SignUpPage();
+        },
+      ),
+
+      GoRoute(
+        path: AppRoutes.forgotPassword,
+        name: AppRoutes.forgotPassword,
+        builder: (context, state) {
+          return const ForgotPasswordPage();
         },
       ),
 

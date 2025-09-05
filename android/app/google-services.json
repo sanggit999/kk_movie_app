@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "182351976362-f03ri19p30j81h4qu9fmi2ecmlgal958.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kk_movie_app",
+            "certificate_hash": "c630e1839f01a798c6b020cbe31c4bf5ac8357d6"
+          }
+        },
+        {
           "client_id": "182351976362-dlc7cqmb30gpvc5h7c2dqrsdntaqta8o.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "182351976362-dlc7cqmb30gpvc5h7c2dqrsdntaqta8o.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "182351976362-qm7qdgttikk3koqjkmq6gja954fkjn22.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.kkMovieApp"
+              }
             }
           ]
         }

@@ -1,8 +1,9 @@
 class AppRoutes {
   AppRoutes._();
   static const splash = '/';
-  static const login = '/login';
+  static const signin = '/signin';
   static const signup = '/signup';
+  static const forgotPassword = '/forgot_password';
   static const home = '/home';
   static const categories = '/categories';
   static const search = '/search';

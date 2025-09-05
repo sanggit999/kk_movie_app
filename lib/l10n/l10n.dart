@@ -59,14 +59,14 @@ class S {
     return Intl.message('KK Movies', name: 'appTitle', desc: '', args: []);
   }
 
-  /// `Login`
-  String get login {
-    return Intl.message('Login', name: 'login', desc: '', args: []);
+  /// `Sign In`
+  String get signIn {
+    return Intl.message('Sign In', name: 'signIn', desc: '', args: []);
   }
 
-  /// `Log out`
-  String get logOut {
-    return Intl.message('Log out', name: 'logOut', desc: '', args: []);
+  /// `Sign out`
+  String get signOut {
+    return Intl.message('Sign out', name: 'signOut', desc: '', args: []);
   }
 
   /// `Sign Up`
@@ -129,11 +129,21 @@ class S {
     );
   }
 
-  /// `Forgot Password?`
+  /// `Forgot Password`
   String get forgotPassword {
     return Intl.message(
-      'Forgot Password?',
+      'Forgot Password',
       name: 'forgotPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset Password`
+  String get resetPassword {
+    return Intl.message(
+      'Reset Password',
+      name: 'resetPassword',
       desc: '',
       args: [],
     );
