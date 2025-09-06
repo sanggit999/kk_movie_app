@@ -189,6 +189,106 @@ class S {
     );
   }
 
+  /// `Name cannot be empty`
+  String get nameEmpty {
+    return Intl.message(
+      'Name cannot be empty',
+      name: 'nameEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name is too long`
+  String get nameTooLong {
+    return Intl.message(
+      'Name is too long',
+      name: 'nameTooLong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email cannot be empty`
+  String get emailEmpty {
+    return Intl.message(
+      'Email cannot be empty',
+      name: 'emailEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email is invalid`
+  String get emailInvalid {
+    return Intl.message(
+      'Email is invalid',
+      name: 'emailInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password cannot be empty`
+  String get passwordEmpty {
+    return Intl.message(
+      'Password cannot be empty',
+      name: 'passwordEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must be at least 8 characters`
+  String get passwordMinLength {
+    return Intl.message(
+      'Password must be at least 8 characters',
+      name: 'passwordMinLength',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must include uppercase, lowercase letters and a number`
+  String get passwordInvalidFormat {
+    return Intl.message(
+      'Password must include uppercase, lowercase letters and a number',
+      name: 'passwordInvalidFormat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password contains invalid characters`
+  String get passwordInvalidChar {
+    return Intl.message(
+      'Password contains invalid characters',
+      name: 'passwordInvalidChar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm password cannot be empty`
+  String get confirmPasswordEmpty {
+    return Intl.message(
+      'Confirm password cannot be empty',
+      name: 'confirmPasswordEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm password does not match`
+  String get confirmPasswordMismatch {
+    return Intl.message(
+      'Confirm password does not match',
+      name: 'confirmPasswordMismatch',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `English`
   String get English {
     return Intl.message('English', name: 'English', desc: '', args: []);

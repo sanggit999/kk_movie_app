@@ -27,7 +27,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "appTitle": MessageLookupByLibrary.simpleMessage("KK Movies"),
     "categories": MessageLookupByLibrary.simpleMessage("Categories"),
     "confirmPassword": MessageLookupByLibrary.simpleMessage("Confirm Password"),
+    "confirmPasswordEmpty": MessageLookupByLibrary.simpleMessage(
+      "Confirm password cannot be empty",
+    ),
+    "confirmPasswordMismatch": MessageLookupByLibrary.simpleMessage(
+      "Confirm password does not match",
+    ),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
+    "emailEmpty": MessageLookupByLibrary.simpleMessage("Email cannot be empty"),
+    "emailInvalid": MessageLookupByLibrary.simpleMessage("Email is invalid"),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password"),
     "haveAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account? ",
@@ -35,12 +43,26 @@ class MessageLookup extends MessageLookupByLibrary {
     "home": MessageLookupByLibrary.simpleMessage("Home"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "name": MessageLookupByLibrary.simpleMessage("Name"),
+    "nameEmpty": MessageLookupByLibrary.simpleMessage("Name cannot be empty"),
+    "nameTooLong": MessageLookupByLibrary.simpleMessage("Name is too long"),
     "noAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account? ",
     ),
     "orSignInWith": MessageLookupByLibrary.simpleMessage("Or sign in with"),
     "orSignUpWith": MessageLookupByLibrary.simpleMessage("Or sign up with"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
+    "passwordEmpty": MessageLookupByLibrary.simpleMessage(
+      "Password cannot be empty",
+    ),
+    "passwordInvalidChar": MessageLookupByLibrary.simpleMessage(
+      "Password contains invalid characters",
+    ),
+    "passwordInvalidFormat": MessageLookupByLibrary.simpleMessage(
+      "Password must include uppercase, lowercase letters and a number",
+    ),
+    "passwordMinLength": MessageLookupByLibrary.simpleMessage(
+      "Password must be at least 8 characters",
+    ),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
     "search": MessageLookupByLibrary.simpleMessage("Search"),

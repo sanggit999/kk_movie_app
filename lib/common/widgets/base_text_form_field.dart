@@ -46,14 +46,22 @@ class _BaseTextFormFieldState extends State<BaseTextFormField> {
       focusNode: widget.focusNode,
       onChanged: widget.onChanged,
       controller: widget.controller,
+      style: const TextStyle(
+        fontSize: 16.0,
+        fontWeight: FontWeight.w500,
+      ),
       decoration: InputDecoration(
         filled: true,
         fillColor: Theme.of(context).colorScheme.secondary,
         hintText: widget.hintText,
         hintStyle: TextStyle(
           fontSize: 16.0,
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w500,
           color: Theme.of(context).colorScheme.primary,
+        ),
+        errorStyle: const TextStyle(
+          fontSize: 14.0,
+          fontWeight: FontWeight.w500,
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
@@ -65,6 +73,13 @@ class _BaseTextFormFieldState extends State<BaseTextFormField> {
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: Theme.of(context).colorScheme.inversePrimary,
+            width: 2.0,
+          ),
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Theme.of(context).colorScheme.error,
             width: 2.0,
           ),
           borderRadius: BorderRadius.circular(12.0),

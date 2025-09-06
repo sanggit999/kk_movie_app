@@ -22,6 +22,17 @@
   "orSignInWith": "Or sign in with",
   "orSignUpWith": "Or sign up with",
 
+  "nameEmpty": "Name cannot be empty",
+  "nameTooLong": "Name is too long",
+  "emailEmpty": "Email cannot be empty",
+  "emailInvalid": "Email is invalid",
+  "passwordEmpty": "Password cannot be empty",
+  "passwordMinLength": "Password must be at least 8 characters",
+  "passwordInvalidFormat": "Password must include uppercase, lowercase letters and a number",
+  "passwordInvalidChar": "Password contains invalid characters",
+  "confirmPasswordEmpty": "Confirm password cannot be empty",
+  "confirmPasswordMismatch": "Confirm password does not match",
+
   "English": "English",
   "Vietnamese": "Vietnamese"
 }

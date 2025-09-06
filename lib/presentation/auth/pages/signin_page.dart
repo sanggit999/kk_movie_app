@@ -8,6 +8,7 @@ import 'package:kk_movie_app/data/auth/models/user_login_req.dart';
 import 'package:kk_movie_app/l10n/l10n.dart';
 import 'package:kk_movie_app/presentation/auth/cubit/auth_cubit.dart';
 import 'package:kk_movie_app/presentation/auth/cubit/auth_state.dart';
+import 'package:kk_movie_app/presentation/auth/validator/form_validator.dart';
 import 'package:kk_movie_app/presentation/auth/widgets/auth_divider.dart';
 import 'package:kk_movie_app/presentation/auth/widgets/auth_rich_text.dart';
 import 'package:kk_movie_app/presentation/auth/widgets/google_button.dart';
@@ -55,16 +56,19 @@ class _SignInPageState extends State<SignInPage> {
                   child: Column(
                     spacing: 20.0,
                     children: [
+                      const SizedBox(),
                       BaseTextFormField(
                         controller: emailController,
                         hintText: S.current.email,
                         keyboardType: TextInputType.emailAddress,
+                        validator: FormValidators.validateEmail,
                       ),
                       BaseTextFormField(
                         controller: pwController,
                         hintText: S.current.password,
                         keyboardType: TextInputType.text,
                         obscureText: true,
+                        validator: FormValidators.validatePassword,
                       ),
 
                       Row(
@@ -92,13 +96,15 @@ class _SignInPageState extends State<SignInPage> {
                       BaseElevatedButton(
                         title: S.current.signIn,
                         onPressed: () {
-                          context.read<AuthCubit>().signin(
-                            UserLoginReq(
-                              email: emailController.text,
-                              password: pwController.text,
-                            ),
-                          );
-                          print('Login button pressed');
+                          if (formKey.currentState!.validate()) {
+                            context.read<AuthCubit>().signin(
+                              UserLoginReq(
+                                email: emailController.text,
+                                password: pwController.text,
+                              ),
+                            );
+                            print('Login button pressed');
+                          }
                         },
                       ),
 

@@ -29,16 +29,42 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirmPassword": MessageLookupByLibrary.simpleMessage(
       "Xác nhận mật khẩu",
     ),
+    "confirmPasswordEmpty": MessageLookupByLibrary.simpleMessage(
+      "Xác nhận mật khẩu không được để trống",
+    ),
+    "confirmPasswordMismatch": MessageLookupByLibrary.simpleMessage(
+      "Mật khẩu xác nhận không khớp",
+    ),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
+    "emailEmpty": MessageLookupByLibrary.simpleMessage(
+      "Email không được để trống",
+    ),
+    "emailInvalid": MessageLookupByLibrary.simpleMessage("Email không hợp lệ"),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Quên mật khẩu"),
     "haveAccount": MessageLookupByLibrary.simpleMessage("Đã có tài khoản? "),
     "home": MessageLookupByLibrary.simpleMessage("Trang chủ"),
     "language": MessageLookupByLibrary.simpleMessage("Ngôn ngữ"),
     "name": MessageLookupByLibrary.simpleMessage("Tên"),
+    "nameEmpty": MessageLookupByLibrary.simpleMessage(
+      "Tên không được để trống",
+    ),
+    "nameTooLong": MessageLookupByLibrary.simpleMessage("Tên quá dài"),
     "noAccount": MessageLookupByLibrary.simpleMessage("Chưa có tài khoản? "),
     "orSignInWith": MessageLookupByLibrary.simpleMessage("Hoặc đăng nhập với"),
     "orSignUpWith": MessageLookupByLibrary.simpleMessage("Hoặc đăng ký với"),
     "password": MessageLookupByLibrary.simpleMessage("Mật khẩu"),
+    "passwordEmpty": MessageLookupByLibrary.simpleMessage(
+      "Mật khẩu không được để trống",
+    ),
+    "passwordInvalidChar": MessageLookupByLibrary.simpleMessage(
+      "Mật khẩu chứa ký tự không hợp lệ",
+    ),
+    "passwordInvalidFormat": MessageLookupByLibrary.simpleMessage(
+      "Mật khẩu phải gồm chữ hoa, chữ thường và số",
+    ),
+    "passwordMinLength": MessageLookupByLibrary.simpleMessage(
+      "Mật khẩu phải ít nhất 8 ký tự",
+    ),
     "profile": MessageLookupByLibrary.simpleMessage("Hồ sơ"),
     "resetPassword": MessageLookupByLibrary.simpleMessage("Đặt lại mật khẩu"),
     "search": MessageLookupByLibrary.simpleMessage("Tìm kiếm"),

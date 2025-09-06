@@ -8,6 +8,7 @@ import 'package:kk_movie_app/data/auth/models/user_signup_req.dart';
 import 'package:kk_movie_app/l10n/l10n.dart';
 import 'package:kk_movie_app/presentation/auth/cubit/auth_cubit.dart';
 import 'package:kk_movie_app/presentation/auth/cubit/auth_state.dart';
+import 'package:kk_movie_app/presentation/auth/validator/form_validator.dart';
 import 'package:kk_movie_app/presentation/auth/widgets/auth_divider.dart';
 import 'package:kk_movie_app/presentation/auth/widgets/auth_rich_text.dart';
 import 'package:kk_movie_app/presentation/auth/widgets/google_button.dart';
@@ -65,36 +66,46 @@ class _SignUpPageState extends State<SignUpPage> {
                         controller: nameController,
                         hintText: S.current.name,
                         keyboardType: TextInputType.name,
+                        validator: FormValidators.validateName,
                       ),
                       BaseTextFormField(
                         controller: emailController,
                         hintText: S.current.email,
                         keyboardType: TextInputType.emailAddress,
+                        validator: FormValidators.validateEmail,
                       ),
                       BaseTextFormField(
                         controller: pwController,
                         hintText: S.current.password,
                         keyboardType: TextInputType.text,
                         obscureText: true,
+                        validator: FormValidators.validatePassword,
                       ),
                       BaseTextFormField(
                         controller: confirmPwController,
                         hintText: S.current.confirmPassword,
                         keyboardType: TextInputType.text,
                         obscureText: true,
+                        validator: (value) =>
+                            FormValidators.validateConfirmPassword(
+                              value,
+                              pwController.text,
+                            ),
                       ),
                       const SizedBox(height: 20.0),
                       BaseElevatedButton(
                         title: S.current.signUp,
                         onPressed: () {
-                          context.read<AuthCubit>().signup(
-                            UserSignUpReq(
-                              email: emailController.text,
-                              password: pwController.text,
-                              name: nameController.text,
-                            ),
-                          );
-                          print('Signup button pressed');
+                          if (formKey.currentState!.validate()) {
+                            context.read<AuthCubit>().signup(
+                              UserSignUpReq(
+                                email: emailController.text,
+                                password: pwController.text,
+                                name: nameController.text,
+                              ),
+                            );
+                            print('Signup button pressed');
+                          }
                         },
                       ),
                       AuthDivider(text: S.current.orSignUpWith),

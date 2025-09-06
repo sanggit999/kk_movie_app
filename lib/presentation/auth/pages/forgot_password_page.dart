@@ -7,6 +7,7 @@ import 'package:kk_movie_app/common/widgets/base_text_form_field.dart';
 import 'package:kk_movie_app/l10n/l10n.dart';
 import 'package:kk_movie_app/presentation/auth/cubit/auth_cubit.dart';
 import 'package:kk_movie_app/presentation/auth/cubit/auth_state.dart';
+import 'package:kk_movie_app/presentation/auth/validator/form_validator.dart';
 import 'package:kk_movie_app/router/app_routes.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
@@ -52,15 +53,18 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     controller: emailController,
                     hintText: S.current.email,
                     keyboardType: TextInputType.emailAddress,
+                    validator: FormValidators.validateEmail,
                   ),
                   const SizedBox(height: 20.0),
                   BaseElevatedButton(
                     title: S.current.resetPassword,
                     onPressed: () {
-                      context.read<AuthCubit>().forgotPassword(
-                        emailController.text,
-                      );
-                      print('Reset password button pressed');
+                      if (formKey.currentState!.validate()) {
+                        context.read<AuthCubit>().forgotPassword(
+                          emailController.text,
+                        );
+                        print('Reset password button pressed');
+                      }
                     },
                   ),
                 ],

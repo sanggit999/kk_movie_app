@@ -22,6 +22,17 @@
   "orSignInWith": "Hoặc đăng nhập với",
   "orSignUpWith": "Hoặc đăng ký với",
 
+  "nameEmpty": "Tên không được để trống",
+  "nameTooLong": "Tên quá dài",
+  "emailEmpty": "Email không được để trống",
+  "emailInvalid": "Email không hợp lệ",
+  "passwordEmpty": "Mật khẩu không được để trống",
+  "passwordMinLength": "Mật khẩu phải ít nhất 8 ký tự",
+  "passwordInvalidFormat": "Mật khẩu phải gồm chữ hoa, chữ thường và số",
+  "passwordInvalidChar": "Mật khẩu chứa ký tự không hợp lệ",
+  "confirmPasswordEmpty": "Xác nhận mật khẩu không được để trống",
+  "confirmPasswordMismatch": "Mật khẩu xác nhận không khớp",
+
   "English": "Tiếng Anh",
   "Vietnamese": "Tiếng Việt"
 }
