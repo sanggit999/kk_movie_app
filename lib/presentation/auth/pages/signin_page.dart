@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kk_movie_app/common/cubit/execute_cubit.dart';
+import 'package:kk_movie_app/common/cubit/execute_state.dart';
 import 'package:kk_movie_app/common/widgets/base_app_bar.dart';
-import 'package:kk_movie_app/common/widgets/base_elevated_button.dart';
 import 'package:kk_movie_app/common/widgets/base_text_form_field.dart';
-import 'package:kk_movie_app/data/auth/models/user_login_req.dart';
+import 'package:kk_movie_app/core/utils/dialog/dialogs.dart';
+import 'package:kk_movie_app/data/auth/models/user_signin_req.dart';
+import 'package:kk_movie_app/di.dart';
+import 'package:kk_movie_app/domain/auth/entities/user_entity.dart';
+import 'package:kk_movie_app/domain/auth/usecases/signin_usecase.dart';
 import 'package:kk_movie_app/l10n/l10n.dart';
 import 'package:kk_movie_app/presentation/auth/cubit/auth_cubit.dart';
-import 'package:kk_movie_app/presentation/auth/cubit/auth_state.dart';
-import 'package:kk_movie_app/presentation/auth/validator/form_validator.dart';
+import 'package:kk_movie_app/core/utils/validator/validators.dart';
+import 'package:kk_movie_app/presentation/auth/widgets/auth_button.dart';
 import 'package:kk_movie_app/presentation/auth/widgets/auth_divider.dart';
 import 'package:kk_movie_app/presentation/auth/widgets/auth_rich_text.dart';
 import 'package:kk_movie_app/presentation/auth/widgets/google_button.dart';
@@ -41,94 +46,106 @@ class _SignInPageState extends State<SignInPage> {
         child: Center(
           child: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: BlocConsumer<AuthCubit, AuthState>(
+            child: BlocListener<ExecuteCubit, ExecuteState>(
               listener: (context, state) {
-                if (state is Authenticated) {
+                if (state is ExecuteFailure) {
+                  final message = switch (state.message) {
+                    'invalid-credential' => S.current.invalidCredential,
+                    _ => S.current.unknownError,
+                  };
+
+                  Dialogs.showErrorDialog(
+                    context: context,
+                    message: message,
+                    title: S.current.notification,
+                    onPressed: () => context.pop(),
+                  );
+                }
+
+                if (state is ExecuteSuccess) {
                   context.go(AppRoutes.home);
                 }
               },
-              builder: (context, state) {
-                if (state is AuthLoading) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-                return Form(
-                  key: formKey,
-                  child: Column(
-                    spacing: 20.0,
-                    children: [
-                      const SizedBox(),
-                      BaseTextFormField(
-                        controller: emailController,
-                        hintText: S.current.email,
-                        keyboardType: TextInputType.emailAddress,
-                        validator: FormValidators.validateEmail,
-                      ),
-                      BaseTextFormField(
-                        controller: pwController,
-                        hintText: S.current.password,
-                        keyboardType: TextInputType.text,
-                        obscureText: true,
-                        validator: FormValidators.validatePassword,
-                      ),
+              child: Form(
+                key: formKey,
+                child: Column(
+                  spacing: 20.0,
+                  children: [
+                    const SizedBox(),
+                    BaseTextFormField(
+                      controller: emailController,
+                      hintText: S.current.email,
+                      keyboardType: TextInputType.emailAddress,
+                      validator: Validators.validateEmail,
+                    ),
+                    BaseTextFormField(
+                      controller: pwController,
+                      hintText: S.current.password,
+                      keyboardType: TextInputType.text,
+                      obscureText: true,
+                      validator: Validators.validatePassword,
+                    ),
 
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              context.push(AppRoutes.forgotPassword);
-                              print('Forgot Password tapped');
-                            },
-                            child: Text(
-                              '${S.current.forgotPassword}?',
-                              style: TextStyle(
-                                color: Theme.of(
-                                  context,
-                                ).colorScheme.inversePrimary,
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w500,
-                              ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            context.push(AppRoutes.forgotPassword);
+                            print('Forgot Password tapped');
+                          },
+                          child: Text(
+                            '${S.current.forgotPassword}?',
+                            style: TextStyle(
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.inversePrimary,
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
+                    ),
 
-                      BaseElevatedButton(
-                        title: S.current.signIn,
-                        onPressed: () {
-                          if (formKey.currentState!.validate()) {
-                            context.read<AuthCubit>().signin(
-                              UserLoginReq(
-                                email: emailController.text,
-                                password: pwController.text,
-                              ),
-                            );
-                            print('Login button pressed');
-                          }
-                        },
-                      ),
+                    AuthButton(
+                      title: S.current.signIn,
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          context
+                              .read<ExecuteCubit>()
+                              .execute<UserEntity, UserSignInReq>(
+                                usecase: getIt<SignInUseCase>(),
+                                params: UserSignInReq(
+                                  email: emailController.text,
+                                  password: pwController.text,
+                                ),
+                              );
+                          print('Login button pressed');
+                        }
+                      },
+                    ),
 
-                      AuthDivider(text: S.current.orSignInWith),
+                    AuthDivider(text: S.current.orSignInWith),
 
-                      GoogleButton(
-                        onTap: () {
-                          context.read<AuthCubit>().signInWithGoogle();
-                          print('Google Sign-In button tapped');
-                        },
-                      ),
+                    GoogleButton(
+                      onTap: () {
+                        context.read<AuthCubit>().signInWithGoogle();
+                        print('Google Sign-In button tapped');
+                      },
+                    ),
 
-                      AuthRichText(
-                        onTap: () {
-                          context.push(AppRoutes.signup);
-                          print('SignUp now tapped');
-                        },
-                        prefixText: S.current.noAccount,
-                        actionText: S.current.signUp,
-                      ),
-                    ],
-                  ),
-                );
-              },
+                    AuthRichText(
+                      onTap: () {
+                        context.push(AppRoutes.signup);
+                        print('SignUp now tapped');
+                      },
+                      prefixText: S.current.noAccount,
+                      actionText: S.current.signUp,
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ),

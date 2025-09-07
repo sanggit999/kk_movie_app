@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kk_movie_app/common/cubit/execute_cubit.dart';
+import 'package:kk_movie_app/presentation/auth/cubit/auth_cubit.dart';
 import 'package:kk_movie_app/presentation/auth/pages/forgot_password_page.dart';
 import 'package:kk_movie_app/router/app_routes.dart';
 import 'package:kk_movie_app/l10n/l10n.dart';
@@ -126,7 +129,10 @@ class AppRouter {
         path: AppRoutes.signin,
         name: AppRoutes.signin,
         builder: (context, state) {
-          return const SignInPage();
+          return BlocProvider(
+            create: (_) => ExecuteCubit(),
+            child: const SignInPage(),
+          );
         },
       ),
 
@@ -134,7 +140,10 @@ class AppRouter {
         path: AppRoutes.signup,
         name: AppRoutes.signup,
         builder: (context, state) {
-          return const SignUpPage();
+          return BlocProvider(
+            create: (_) => ExecuteCubit(),
+            child: const SignUpPage(),
+          );
         },
       ),
 
@@ -142,7 +151,10 @@ class AppRouter {
         path: AppRoutes.forgotPassword,
         name: AppRoutes.forgotPassword,
         builder: (context, state) {
-          return const ForgotPasswordPage();
+          return BlocProvider(
+            create: (_) => ExecuteCubit(),
+            child: const ForgotPasswordPage(),
+          );
         },
       ),
 

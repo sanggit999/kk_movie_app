@@ -249,10 +249,10 @@ class S {
     );
   }
 
-  /// `Password must include uppercase, lowercase letters and a number`
+  /// `Password must include uppercase,\nlowercase letters and a number`
   String get passwordInvalidFormat {
     return Intl.message(
-      'Password must include uppercase, lowercase letters and a number',
+      'Password must include uppercase,\nlowercase letters and a number',
       name: 'passwordInvalidFormat',
       desc: '',
       args: [],
@@ -289,14 +289,129 @@ class S {
     );
   }
 
+  /// `User not found`
+  String get userNotFound {
+    return Intl.message(
+      'User not found',
+      name: 'userNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wrong password`
+  String get wrongPassword {
+    return Intl.message(
+      'Wrong password',
+      name: 'wrongPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid email`
+  String get invalidEmail {
+    return Intl.message(
+      'Invalid email',
+      name: 'invalidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User disabled`
+  String get userDisabled {
+    return Intl.message(
+      'User disabled',
+      name: 'userDisabled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The email address is already in use`
+  String get emailAlreadyInUse {
+    return Intl.message(
+      'The email address is already in use',
+      name: 'emailAlreadyInUse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This operation is not allowed`
+  String get operationNotAllowed {
+    return Intl.message(
+      'This operation is not allowed',
+      name: 'operationNotAllowed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The password is too weak`
+  String get weakPassword {
+    return Intl.message(
+      'The password is too weak',
+      name: 'weakPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unknown error`
+  String get unknownError {
+    return Intl.message(
+      'Unknown error',
+      name: 'unknownError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid email or password`
+  String get invalidCredential {
+    return Intl.message(
+      'Invalid email or password',
+      name: 'invalidCredential',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password reset request successful. Please check your email (including the spam folder).`
+  String get resetPasswordRequestSuccess {
+    return Intl.message(
+      'Password reset request successful. Please check your email (including the spam folder).',
+      name: 'resetPasswordRequestSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OK`
+  String get OK {
+    return Intl.message('OK', name: 'OK', desc: '', args: []);
+  }
+
+  /// `Notification`
+  String get notification {
+    return Intl.message(
+      'Notification',
+      name: 'notification',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `English`
-  String get English {
-    return Intl.message('English', name: 'English', desc: '', args: []);
+  String get english {
+    return Intl.message('English', name: 'english', desc: '', args: []);
   }
 
   /// `Vietnamese`
-  String get Vietnamese {
-    return Intl.message('Vietnamese', name: 'Vietnamese', desc: '', args: []);
+  String get vietnamese {
+    return Intl.message('Vietnamese', name: 'vietnamese', desc: '', args: []);
   }
 }
 

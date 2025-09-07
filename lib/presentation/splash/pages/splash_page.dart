@@ -14,12 +14,6 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   @override
-  void initState() {
-    super.initState();
-    context.read<AuthCubit>().checkAuth();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 25, 25, 25),
@@ -32,7 +26,9 @@ class _SplashPageState extends State<SplashPage> {
             context.go(AppRoutes.signin);
           }
         },
-        child: Center(child: Image.asset('assets/images/splash_logo.png')),
+        child: SafeArea(
+          child: Center(child: Image.asset('assets/images/splash_logo.png')),
+        ),
       ),
     );
   }

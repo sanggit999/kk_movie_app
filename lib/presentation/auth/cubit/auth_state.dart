@@ -23,19 +23,11 @@ class Authenticated extends AuthState {
 
 class Unauthenticated extends AuthState {}
 
-class AuthForgotPasswordSuccess extends AuthState {
-  final String message;
-
-  const AuthForgotPasswordSuccess({required this.message});
-
-  @override
-  List<Object?> get props => [message];
-}
-
 class AuthError extends AuthState {
   final String message;
 
   const AuthError({required this.message});
+
   @override
   List<Object?> get props => [message];
 }

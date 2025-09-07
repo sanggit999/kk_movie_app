@@ -22,8 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "English": MessageLookupByLibrary.simpleMessage("Tiếng Anh"),
-    "Vietnamese": MessageLookupByLibrary.simpleMessage("Tiếng Việt"),
+    "OK": MessageLookupByLibrary.simpleMessage("OK"),
     "appTitle": MessageLookupByLibrary.simpleMessage("KK Movies"),
     "categories": MessageLookupByLibrary.simpleMessage("Thể loại"),
     "confirmPassword": MessageLookupByLibrary.simpleMessage(
@@ -36,6 +35,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Mật khẩu xác nhận không khớp",
     ),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
+    "emailAlreadyInUse": MessageLookupByLibrary.simpleMessage(
+      "Địa chỉ email này đã được sử dụng",
+    ),
     "emailEmpty": MessageLookupByLibrary.simpleMessage(
       "Email không được để trống",
     ),
@@ -43,6 +45,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Quên mật khẩu"),
     "haveAccount": MessageLookupByLibrary.simpleMessage("Đã có tài khoản? "),
     "home": MessageLookupByLibrary.simpleMessage("Trang chủ"),
+    "invalidCredential": MessageLookupByLibrary.simpleMessage(
+      "Email hoặc mật khẩu không đúng",
+    ),
+    "invalidEmail": MessageLookupByLibrary.simpleMessage("Email không hợp lệ"),
     "language": MessageLookupByLibrary.simpleMessage("Ngôn ngữ"),
     "name": MessageLookupByLibrary.simpleMessage("Tên"),
     "nameEmpty": MessageLookupByLibrary.simpleMessage(
@@ -50,6 +56,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "nameTooLong": MessageLookupByLibrary.simpleMessage("Tên quá dài"),
     "noAccount": MessageLookupByLibrary.simpleMessage("Chưa có tài khoản? "),
+    "notification": MessageLookupByLibrary.simpleMessage("Thông báo"),
+    "operationNotAllowed": MessageLookupByLibrary.simpleMessage(
+      "Thao tác này không được phép",
+    ),
     "orSignInWith": MessageLookupByLibrary.simpleMessage("Hoặc đăng nhập với"),
     "orSignUpWith": MessageLookupByLibrary.simpleMessage("Hoặc đăng ký với"),
     "password": MessageLookupByLibrary.simpleMessage("Mật khẩu"),
@@ -67,10 +77,22 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "profile": MessageLookupByLibrary.simpleMessage("Hồ sơ"),
     "resetPassword": MessageLookupByLibrary.simpleMessage("Đặt lại mật khẩu"),
+    "resetPasswordRequestSuccess": MessageLookupByLibrary.simpleMessage(
+      "Yêu cầu đặt lại mật khẩu thành công. Vui lòng kiểm tra email (bao gồm cả hộp thư rác).",
+    ),
     "search": MessageLookupByLibrary.simpleMessage("Tìm kiếm"),
     "signIn": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
     "signOut": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
     "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký"),
+    "unknownError": MessageLookupByLibrary.simpleMessage("Lỗi không xác định"),
+    "userDisabled": MessageLookupByLibrary.simpleMessage(
+      "Tài khoản đã bị vô hiệu hóa",
+    ),
+    "userNotFound": MessageLookupByLibrary.simpleMessage(
+      "Không tìm thấy người dùng",
+    ),
     "watchlist": MessageLookupByLibrary.simpleMessage("Xem sau"),
+    "weakPassword": MessageLookupByLibrary.simpleMessage("Mật khẩu quá yếu"),
+    "wrongPassword": MessageLookupByLibrary.simpleMessage("Sai mật khẩu"),
   };
 }

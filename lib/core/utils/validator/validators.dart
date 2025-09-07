@@ -1,7 +1,7 @@
 import 'package:kk_movie_app/l10n/l10n.dart';
 
-class FormValidators {
-  FormValidators._();
+class Validators {
+  Validators._();
 
   static String? validateName(String? value) {
     if (value == null || value.trim().isEmpty) {

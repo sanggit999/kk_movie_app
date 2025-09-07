@@ -5,8 +5,6 @@ class BaseElevatedButton extends StatelessWidget {
   final double? width;
   final double? height;
   final String title;
-  final Color? backgroundColor;
-  final BorderSide? side;
 
   const BaseElevatedButton({
     super.key,
@@ -14,8 +12,6 @@ class BaseElevatedButton extends StatelessWidget {
     this.width,
     this.height,
     required this.title,
-    this.backgroundColor,
-    this.side,
   });
 
   @override

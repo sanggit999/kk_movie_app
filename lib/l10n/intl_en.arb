@@ -28,11 +28,25 @@
   "emailInvalid": "Email is invalid",
   "passwordEmpty": "Password cannot be empty",
   "passwordMinLength": "Password must be at least 8 characters",
-  "passwordInvalidFormat": "Password must include uppercase, lowercase letters and a number",
+  "passwordInvalidFormat": "Password must include uppercase,\nlowercase letters and a number",
   "passwordInvalidChar": "Password contains invalid characters",
   "confirmPasswordEmpty": "Confirm password cannot be empty",
   "confirmPasswordMismatch": "Confirm password does not match",
 
-  "English": "English",
-  "Vietnamese": "Vietnamese"
+  "userNotFound": "User not found",
+  "wrongPassword": "Wrong password",
+  "invalidEmail": "Invalid email",
+  "userDisabled": "User disabled",
+  "emailAlreadyInUse": "The email address is already in use",
+  "operationNotAllowed": "This operation is not allowed",
+  "weakPassword": "The password is too weak",
+  "unknownError": "Unknown error",
+  "invalidCredential": "Invalid email or password",
+  "resetPasswordRequestSuccess": "Password reset request successful. Please check your email (including the spam folder).",
+
+  "OK": "OK",
+  "notification": "Notification",
+
+  "english": "English",
+  "vietnamese": "Vietnamese"
 }

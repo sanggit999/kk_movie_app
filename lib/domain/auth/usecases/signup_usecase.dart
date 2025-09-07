@@ -6,7 +6,7 @@ import 'package:kk_movie_app/di.dart';
 import 'package:kk_movie_app/domain/auth/entities/user_entity.dart';
 import 'package:kk_movie_app/domain/auth/repositories/auth_repository.dart';
 
-class SignupUseCase
+class SignUpUseCase
     implements UseCase<Either<Failure, UserEntity>, UserSignUpReq> {
   @override
   Future<Either<Failure, UserEntity>> call(UserSignUpReq params) {

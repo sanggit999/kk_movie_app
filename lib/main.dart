@@ -17,7 +17,7 @@ Future<void> main() async {
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider.value(value: getIt<AuthCubit>()),
+        BlocProvider.value(value: getIt<AuthCubit>()..checkAuth()),
         BlocProvider.value(value: getIt<LanguageCubit>()),
       ],
       child: const MyApp(),

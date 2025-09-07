@@ -33,6 +33,19 @@
   "confirmPasswordEmpty": "Xác nhận mật khẩu không được để trống",
   "confirmPasswordMismatch": "Mật khẩu xác nhận không khớp",
 
+  "userNotFound": "Không tìm thấy người dùng",
+  "wrongPassword": "Sai mật khẩu",
+  "invalidEmail": "Email không hợp lệ",
+  "userDisabled": "Tài khoản đã bị vô hiệu hóa",
+  "emailAlreadyInUse": "Địa chỉ email này đã được sử dụng",
+  "operationNotAllowed": "Thao tác này không được phép",
+  "weakPassword": "Mật khẩu quá yếu",
+  "unknownError": "Lỗi không xác định",
+  "invalidCredential": "Email hoặc mật khẩu không đúng",
+  "resetPasswordRequestSuccess": "Yêu cầu đặt lại mật khẩu thành công. Vui lòng kiểm tra email (bao gồm cả hộp thư rác).",
+  "OK": "OK",
+  "notification" : "Thông báo",
+
   "English": "Tiếng Anh",
   "Vietnamese": "Tiếng Việt"
 }

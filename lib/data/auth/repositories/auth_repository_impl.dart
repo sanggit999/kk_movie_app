@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:kk_movie_app/core/errors/failure.dart';
 import 'package:kk_movie_app/data/auth/datasources/auth_firebase_service.dart';
-import 'package:kk_movie_app/data/auth/models/user_login_req.dart';
+import 'package:kk_movie_app/data/auth/models/user_signin_req.dart';
 import 'package:kk_movie_app/data/auth/models/user_signup_req.dart';
 import 'package:kk_movie_app/di.dart';
 import 'package:kk_movie_app/domain/auth/entities/user_entity.dart';
@@ -9,8 +9,8 @@ import 'package:kk_movie_app/domain/auth/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   @override
-  Future<Either<Failure, UserEntity>> signIn(UserLoginReq userLoginReq) async {
-    return await getIt<AuthFirebaseService>().signIn(userLoginReq);
+  Future<Either<Failure, UserEntity>> signIn(UserSignInReq userSignInReq) async {
+    return await getIt<AuthFirebaseService>().signIn(userSignInReq);
   }
 
   @override

@@ -14,7 +14,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.actions,
     this.backgroundColor,
     this.bottom,
-    this.hideLeading = false,
+    this.hideLeading = true,
     this.centerTitle = true,
   });
 

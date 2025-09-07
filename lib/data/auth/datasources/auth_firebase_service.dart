@@ -4,13 +4,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kk_movie_app/common/mappers/user_mapper.dart';
 import 'package:kk_movie_app/core/errors/failure.dart';
-import 'package:kk_movie_app/data/auth/models/user_login_req.dart';
 import 'package:kk_movie_app/data/auth/models/user_model.dart';
+import 'package:kk_movie_app/data/auth/models/user_signin_req.dart';
 import 'package:kk_movie_app/data/auth/models/user_signup_req.dart';
 import 'package:kk_movie_app/domain/auth/entities/user_entity.dart';
 
 abstract class AuthFirebaseService {
-  Future<Either<Failure, UserEntity>> signIn(UserLoginReq userLoginReq);
+  Future<Either<Failure, UserEntity>> signIn(UserSignInReq userSignInReq);
   Future<Either<Failure, UserEntity>> signUp(UserSignUpReq userSignUpReq);
   Future<Either<Failure, UserEntity>> signInWithGoogle();
   Future<Either<Failure, String>> sendPasswordResetEmail(String email);
@@ -25,12 +25,14 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
   bool _isInitialize = false;
 
   @override
-  Future<Either<Failure, UserEntity>> signIn(UserLoginReq userLoginReq) async {
+  Future<Either<Failure, UserEntity>> signIn(
+    UserSignInReq userSignInReq,
+  ) async {
     try {
       UserCredential userCredential = await _firebaseAuth
           .signInWithEmailAndPassword(
-            email: userLoginReq.email,
-            password: userLoginReq.password,
+            email: userSignInReq.email,
+            password: userSignInReq.password,
           );
 
       final user = userCredential.user;
@@ -40,7 +42,7 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
 
       UserModel userModel = UserModel(
         uid: user.uid,
-        email: userLoginReq.email,
+        email: userSignInReq.email,
         name: user.displayName ?? '',
         avatarUrl: user.photoURL ?? '',
         provider: 'email',
@@ -48,18 +50,11 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
       );
       return Right(UserMapper.toEntity(userModel));
     } on FirebaseAuthException catch (e) {
-      switch (e.code) {
-        case 'user-not-found':
-          return const Left(ServerFailure(message: 'user-not-found'));
-        case 'wrong-password':
-          return const Left(ServerFailure(message: 'wrong-password'));
-        case 'invalid-email':
-          return const Left(ServerFailure(message: 'invalid-email'));
-        case 'user-disabled':
-          return const Left(ServerFailure(message: 'user-disabled'));
-        default:
-          return Left(ServerFailure(message: e.message ?? 'unknown-error'));
+      String message = '';
+      if (e.code == 'invalid-credential') {
+        message = 'invalid-credential';
       }
+      return Left(ServerFailure(message: message));
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }
@@ -94,18 +89,11 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
 
       return Right(UserMapper.toEntity(userModel));
     } on FirebaseAuthException catch (e) {
-      switch (e.code) {
-        case 'email-already-in-use':
-          return const Left(ServerFailure(message: 'email-already-in-use'));
-        case 'invalid-email':
-          return const Left(ServerFailure(message: 'invalid-email'));
-        case 'operation-not-allowed':
-          return const Left(ServerFailure(message: 'operation-not-allowed'));
-        case 'weak-password':
-          return const Left(ServerFailure(message: 'weak-password'));
-        default:
-          return Left(ServerFailure(message: e.message ?? 'unknown-error'));
+      String message = '';
+      if (e.code == 'email-already-in-use') {
+        message = 'email-already-in-use';
       }
+      return Left(ServerFailure(message: message));
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }
@@ -178,15 +166,8 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
     try {
       await _firebaseAuth.sendPasswordResetEmail(email: email);
       return const Right('reset-email-sent');
-    } on FirebaseException catch (e) {
-      switch (e.code) {
-        case 'user-not-found':
-          return const Left(ServerFailure(message: 'user-not-found'));
-        case 'invalid-email':
-          return const Left(ServerFailure(message: 'invalid-email'));
-        default:
-          return Left(ServerFailure(message: e.message ?? 'unknown-error'));
-      }
+    } on FirebaseAuthException catch (e) {
+      return Left(ServerFailure(message: e.code));
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }
@@ -212,7 +193,7 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
         return Right(userEntity);
       }
 
-      return const Left(ServerFailure(message: 'no-user'));
+      return const Left(ServerFailure(message: 'user-not-found'));
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }

@@ -22,8 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "English": MessageLookupByLibrary.simpleMessage("English"),
-    "Vietnamese": MessageLookupByLibrary.simpleMessage("Vietnamese"),
+    "OK": MessageLookupByLibrary.simpleMessage("OK"),
     "appTitle": MessageLookupByLibrary.simpleMessage("KK Movies"),
     "categories": MessageLookupByLibrary.simpleMessage("Categories"),
     "confirmPassword": MessageLookupByLibrary.simpleMessage("Confirm Password"),
@@ -34,19 +33,31 @@ class MessageLookup extends MessageLookupByLibrary {
       "Confirm password does not match",
     ),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
+    "emailAlreadyInUse": MessageLookupByLibrary.simpleMessage(
+      "The email address is already in use",
+    ),
     "emailEmpty": MessageLookupByLibrary.simpleMessage("Email cannot be empty"),
     "emailInvalid": MessageLookupByLibrary.simpleMessage("Email is invalid"),
+    "english": MessageLookupByLibrary.simpleMessage("English"),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password"),
     "haveAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account? ",
     ),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
+    "invalidCredential": MessageLookupByLibrary.simpleMessage(
+      "Invalid email or password",
+    ),
+    "invalidEmail": MessageLookupByLibrary.simpleMessage("Invalid email"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "name": MessageLookupByLibrary.simpleMessage("Name"),
     "nameEmpty": MessageLookupByLibrary.simpleMessage("Name cannot be empty"),
     "nameTooLong": MessageLookupByLibrary.simpleMessage("Name is too long"),
     "noAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account? ",
+    ),
+    "notification": MessageLookupByLibrary.simpleMessage("Notification"),
+    "operationNotAllowed": MessageLookupByLibrary.simpleMessage(
+      "This operation is not allowed",
     ),
     "orSignInWith": MessageLookupByLibrary.simpleMessage("Or sign in with"),
     "orSignUpWith": MessageLookupByLibrary.simpleMessage("Or sign up with"),
@@ -58,17 +69,28 @@ class MessageLookup extends MessageLookupByLibrary {
       "Password contains invalid characters",
     ),
     "passwordInvalidFormat": MessageLookupByLibrary.simpleMessage(
-      "Password must include uppercase, lowercase letters and a number",
+      "Password must include uppercase,\nlowercase letters and a number",
     ),
     "passwordMinLength": MessageLookupByLibrary.simpleMessage(
       "Password must be at least 8 characters",
     ),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
+    "resetPasswordRequestSuccess": MessageLookupByLibrary.simpleMessage(
+      "Password reset request successful. Please check your email (including the spam folder).",
+    ),
     "search": MessageLookupByLibrary.simpleMessage("Search"),
     "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
     "signOut": MessageLookupByLibrary.simpleMessage("Sign out"),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+    "unknownError": MessageLookupByLibrary.simpleMessage("Unknown error"),
+    "userDisabled": MessageLookupByLibrary.simpleMessage("User disabled"),
+    "userNotFound": MessageLookupByLibrary.simpleMessage("User not found"),
+    "vietnamese": MessageLookupByLibrary.simpleMessage("Vietnamese"),
     "watchlist": MessageLookupByLibrary.simpleMessage("Watchlist"),
+    "weakPassword": MessageLookupByLibrary.simpleMessage(
+      "The password is too weak",
+    ),
+    "wrongPassword": MessageLookupByLibrary.simpleMessage("Wrong password"),
   };
 }
