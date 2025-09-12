@@ -5,14 +5,9 @@ import 'package:kk_movie_app/presentation/auth/cubit/auth_cubit.dart';
 import 'package:kk_movie_app/presentation/auth/cubit/auth_state.dart';
 import 'package:kk_movie_app/router/app_routes.dart';
 
-class SplashPage extends StatefulWidget {
+class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
 
-  @override
-  State<SplashPage> createState() => _SplashPageState();
-}
-
-class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:kk_movie_app/core/errors/failure.dart';
+import 'package:kk_movie_app/core/errors/failures.dart';
 import 'package:kk_movie_app/core/usecase/usecase.dart';
 import 'package:kk_movie_app/data/auth/models/user_signup_req.dart';
 import 'package:kk_movie_app/di.dart';

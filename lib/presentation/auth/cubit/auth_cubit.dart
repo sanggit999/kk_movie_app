@@ -35,7 +35,7 @@ class AuthCubit extends Cubit<AuthState> {
 
     return user.fold(
       (error) {
-        emit(AuthError(message: error.message));
+        emit(AuthError(message: error.message!));
       },
       (data) {
         emit(Authenticated(userEntity: data));

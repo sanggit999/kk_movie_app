@@ -2,19 +2,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:kk_movie_app/common/mappers/user_mapper.dart';
-import 'package:kk_movie_app/core/errors/failure.dart';
+import 'package:kk_movie_app/core/errors/exceptions.dart';
+import 'package:kk_movie_app/core/errors/failures.dart';
 import 'package:kk_movie_app/data/auth/models/user_model.dart';
 import 'package:kk_movie_app/data/auth/models/user_signin_req.dart';
 import 'package:kk_movie_app/data/auth/models/user_signup_req.dart';
 import 'package:kk_movie_app/domain/auth/entities/user_entity.dart';
 
 abstract class AuthFirebaseService {
-  Future<Either<Failure, UserEntity>> signIn(UserSignInReq userSignInReq);
-  Future<Either<Failure, UserEntity>> signUp(UserSignUpReq userSignUpReq);
-  Future<Either<Failure, UserEntity>> signInWithGoogle();
-  Future<Either<Failure, String>> sendPasswordResetEmail(String email);
-  Future<Either<Failure, UserEntity>> getCurrentUser();
+  Future<UserModel> signIn(UserSignInReq userSignInReq);
+  Future<UserModel> signUp(UserSignUpReq userSignUpReq);
+  Future<UserModel> signInWithGoogle();
+  Future<String> sendPasswordResetEmail(String email);
+  Future<UserModel> getCurrentUser();
   Future<void> signOut();
 }
 
@@ -25,9 +25,7 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
   bool _isInitialize = false;
 
   @override
-  Future<Either<Failure, UserEntity>> signIn(
-    UserSignInReq userSignInReq,
-  ) async {
+  Future<UserModel> signIn(UserSignInReq userSignInReq) async {
     try {
       UserCredential userCredential = await _firebaseAuth
           .signInWithEmailAndPassword(
@@ -37,7 +35,7 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
 
       final user = userCredential.user;
       if (user == null) {
-        return const Left(ServerFailure(message: 'user-not-found'));
+        throw const (message: 'user-not-found');
       }
 
       UserModel userModel = UserModel(
@@ -48,22 +46,20 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
         provider: 'email',
         createdAt: DateTime.now(),
       );
-      return Right(UserMapper.toEntity(userModel));
+      return userModel;
     } on FirebaseAuthException catch (e) {
       String message = '';
       if (e.code == 'invalid-credential') {
         message = 'invalid-credential';
       }
-      return Left(ServerFailure(message: message));
+      throw ServerException(message: message);
     } catch (e) {
-      return Left(ServerFailure(message: e.toString()));
+      throw ServerException(message: e.toString());
     }
   }
 
   @override
-  Future<Either<Failure, UserEntity>> signUp(
-    UserSignUpReq userSignUpReq,
-  ) async {
+  Future<UserModel> signUp(UserSignUpReq userSignUpReq) async {
     try {
       UserCredential userCredential = await _firebaseAuth
           .createUserWithEmailAndPassword(
@@ -73,7 +69,7 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
 
       final user = userCredential.user;
       if (user == null) {
-        return const Left(ServerFailure(message: 'user-not-found'));
+        throw ServerException(message: 'user-not-found');
       }
 
       UserModel userModel = UserModel(
@@ -87,20 +83,20 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
       final userDoc = _firebaseFirestore.collection('Users').doc(user.uid);
       await userDoc.set(userModel.toJson());
 
-      return Right(UserMapper.toEntity(userModel));
+      return userModel;
     } on FirebaseAuthException catch (e) {
       String message = '';
       if (e.code == 'email-already-in-use') {
         message = 'email-already-in-use';
       }
-      return Left(ServerFailure(message: message));
+      throw ServerException(message: message);
     } catch (e) {
-      return Left(ServerFailure(message: e.toString()));
+      throw ServerException(message: e.toString());
     }
   }
 
   @override
-  Future<Either<Failure, UserEntity>> signInWithGoogle() async {
+  Future<UserModel> signInWithGoogle() async {
     try {
       if (!_isInitialize) {
         await _googleSignIn.initialize(
@@ -140,7 +136,7 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
 
       final user = userCredential.user;
       if (user == null) {
-        return const Left(ServerFailure(message: 'user-not-found'));
+        throw ServerException(message: 'user-not-found');
       }
 
       UserModel userModel = UserModel(
@@ -155,26 +151,26 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
       final userDoc = _firebaseFirestore.collection('Users').doc(user.uid);
       await userDoc.set(userModel.toJson());
 
-      return Right(UserMapper.toEntity(userModel));
+      return userModel;
     } catch (e) {
-      return Left(ServerFailure(message: e.toString()));
+      throw ServerException(message: e.toString());
     }
   }
 
   @override
-  Future<Either<Failure, String>> sendPasswordResetEmail(String email) async {
+  Future<String> sendPasswordResetEmail(String email) async {
     try {
       await _firebaseAuth.sendPasswordResetEmail(email: email);
-      return const Right('reset-email-sent');
+      return 'reset-email-sent';
     } on FirebaseAuthException catch (e) {
-      return Left(ServerFailure(message: e.code));
+      throw ServerException(message: e.code);
     } catch (e) {
-      return Left(ServerFailure(message: e.toString()));
+      throw ServerException(message: e.toString());
     }
   }
 
   @override
-  Future<Either<Failure, UserEntity>> getCurrentUser() async {
+  Future<UserModel> getCurrentUser() async {
     try {
       final firebaseUser = _firebaseAuth.currentUser;
       if (firebaseUser != null) {
@@ -182,7 +178,7 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
             ? firebaseUser.providerData[0].providerId
             : 'email';
 
-        UserEntity userEntity = UserEntity(
+        UserModel userModel = UserModel(
           uid: firebaseUser.uid,
           email: firebaseUser.email ?? '',
           name: firebaseUser.displayName ?? '',
@@ -190,12 +186,12 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
           provider: providerId == 'password' ? 'email' : providerId,
           createdAt: firebaseUser.metadata.creationTime ?? DateTime.now(),
         );
-        return Right(userEntity);
+        return userModel;
       }
 
-      return const Left(ServerFailure(message: 'user-not-found'));
+      throw ServerException(message: 'user-not-found');
     } catch (e) {
-      return Left(ServerFailure(message: e.toString()));
+      throw ServerException(message: e.toString());
     }
   }
 

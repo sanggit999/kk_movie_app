@@ -48,7 +48,7 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar(title: Text(S.current.signUp)),
+      appBar: BaseAppBar(hideLeading:false,title: Text(S.current.signUp)),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -135,6 +135,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     AuthRichText(
                       onTap: () {
+                        context.pop();
                         print('SignUp now tapped');
                       },
                       prefixText: S.current.haveAccount,

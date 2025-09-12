@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:kk_movie_app/common/cubit/language_cubit.dart';
-import 'package:kk_movie_app/data/auth/datasources/auth_firebase_service.dart';
-import 'package:kk_movie_app/data/auth/repositories/auth_repository_impl.dart';
+import 'package:kk_movie_app/data/auth/data_sources/auth_firebase_service.dart';
+import 'package:kk_movie_app/data/auth/repositories_impl/auth_repository_impl.dart';
 import 'package:kk_movie_app/domain/auth/repositories/auth_repository.dart';
 import 'package:kk_movie_app/domain/auth/usecases/get_current_user_usecase.dart';
 import 'package:kk_movie_app/domain/auth/usecases/send_password_reset_email_usecase.dart';
