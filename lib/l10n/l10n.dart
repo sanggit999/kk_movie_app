@@ -404,6 +404,66 @@ class S {
     );
   }
 
+  /// `No connection`
+  String get noConnection {
+    return Intl.message(
+      'No connection',
+      name: 'noConnection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go back online`
+  String get goOnline {
+    return Intl.message('Go back online', name: 'goOnline', desc: '', args: []);
+  }
+
+  /// `TV Series`
+  String get tvSeries {
+    return Intl.message('TV Series', name: 'tvSeries', desc: '', args: []);
+  }
+
+  /// `Movie`
+  String get movie {
+    return Intl.message('Movie', name: 'movie', desc: '', args: []);
+  }
+
+  /// `Cartoon`
+  String get cartoon {
+    return Intl.message('Cartoon', name: 'cartoon', desc: '', args: []);
+  }
+
+  /// `View all`
+  String get viewAll {
+    return Intl.message('View all', name: 'viewAll', desc: '', args: []);
+  }
+
+  /// `Latest`
+  String get latest {
+    return Intl.message('Latest', name: 'latest', desc: '', args: []);
+  }
+
+  /// `Oldest`
+  String get oldest {
+    return Intl.message('Oldest', name: 'oldest', desc: '', args: []);
+  }
+
+  /// `Vietsub`
+  String get vietSub {
+    return Intl.message('Vietsub', name: 'vietSub', desc: '', args: []);
+  }
+
+  /// `Subtitled`
+  String get subtitled {
+    return Intl.message('Subtitled', name: 'subtitled', desc: '', args: []);
+  }
+
+  /// `Dubbed`
+  String get dubbed {
+    return Intl.message('Dubbed', name: 'dubbed', desc: '', args: []);
+  }
+
   /// `English`
   String get english {
     return Intl.message('English', name: 'english', desc: '', args: []);

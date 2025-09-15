@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "OK": MessageLookupByLibrary.simpleMessage("OK"),
     "appTitle": MessageLookupByLibrary.simpleMessage("KK Movies"),
+    "cartoon": MessageLookupByLibrary.simpleMessage("Cartoon"),
     "categories": MessageLookupByLibrary.simpleMessage("Categories"),
     "confirmPassword": MessageLookupByLibrary.simpleMessage("Confirm Password"),
     "confirmPasswordEmpty": MessageLookupByLibrary.simpleMessage(
@@ -32,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirmPasswordMismatch": MessageLookupByLibrary.simpleMessage(
       "Confirm password does not match",
     ),
+    "dubbed": MessageLookupByLibrary.simpleMessage("Dubbed"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
     "emailAlreadyInUse": MessageLookupByLibrary.simpleMessage(
       "The email address is already in use",
@@ -40,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "emailInvalid": MessageLookupByLibrary.simpleMessage("Email is invalid"),
     "english": MessageLookupByLibrary.simpleMessage("English"),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password"),
+    "goOnline": MessageLookupByLibrary.simpleMessage("Go back online"),
     "haveAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account? ",
     ),
@@ -49,13 +52,17 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "invalidEmail": MessageLookupByLibrary.simpleMessage("Invalid email"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
+    "latest": MessageLookupByLibrary.simpleMessage("Latest"),
+    "movie": MessageLookupByLibrary.simpleMessage("Movie"),
     "name": MessageLookupByLibrary.simpleMessage("Name"),
     "nameEmpty": MessageLookupByLibrary.simpleMessage("Name cannot be empty"),
     "nameTooLong": MessageLookupByLibrary.simpleMessage("Name is too long"),
     "noAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account? ",
     ),
+    "noConnection": MessageLookupByLibrary.simpleMessage("No connection"),
     "notification": MessageLookupByLibrary.simpleMessage("Notification"),
+    "oldest": MessageLookupByLibrary.simpleMessage("Oldest"),
     "operationNotAllowed": MessageLookupByLibrary.simpleMessage(
       "This operation is not allowed",
     ),
@@ -83,10 +90,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
     "signOut": MessageLookupByLibrary.simpleMessage("Sign out"),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+    "subtitled": MessageLookupByLibrary.simpleMessage("Subtitled"),
+    "tvSeries": MessageLookupByLibrary.simpleMessage("TV Series"),
     "unknownError": MessageLookupByLibrary.simpleMessage("Unknown error"),
     "userDisabled": MessageLookupByLibrary.simpleMessage("User disabled"),
     "userNotFound": MessageLookupByLibrary.simpleMessage("User not found"),
+    "vietSub": MessageLookupByLibrary.simpleMessage("Vietsub"),
     "vietnamese": MessageLookupByLibrary.simpleMessage("Vietnamese"),
+    "viewAll": MessageLookupByLibrary.simpleMessage("View all"),
     "watchlist": MessageLookupByLibrary.simpleMessage("Watchlist"),
     "weakPassword": MessageLookupByLibrary.simpleMessage(
       "The password is too weak",

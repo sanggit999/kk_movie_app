@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kk_movie_app/common/cubit/execute_cubit.dart';
-import 'package:kk_movie_app/presentation/auth/cubit/auth_cubit.dart';
+import 'package:kk_movie_app/domain/movie/entities/movie_type.dart';
 import 'package:kk_movie_app/presentation/auth/pages/forgot_password_page.dart';
+import 'package:kk_movie_app/presentation/home/cubit/home_cubit.dart';
+import 'package:kk_movie_app/presentation/view_all/cubit/view_all_cubit.dart';
+import 'package:kk_movie_app/presentation/view_all/pages/view_all_cartoon_movie_page.dart';
+import 'package:kk_movie_app/presentation/view_all/pages/view_all_series_movie_page.dart';
+import 'package:kk_movie_app/presentation/view_all/pages/view_all_single_movie_page.dart';
 import 'package:kk_movie_app/router/app_routes.dart';
 import 'package:kk_movie_app/l10n/l10n.dart';
 import 'package:kk_movie_app/presentation/splash/pages/splash_page.dart';
@@ -69,8 +74,12 @@ class AppRouter {
               GoRoute(
                 path: AppRoutes.home,
                 name: AppRoutes.home,
-                pageBuilder: (context, state) =>
-                    const NoTransitionPage(child: HomePage()),
+                pageBuilder: (context, state) => NoTransitionPage(
+                  child: BlocProvider(
+                    create: (_) => HomeCubit()..getAllDatas(),
+                    child: const HomePage(),
+                  ),
+                ),
               ),
             ],
           ),
@@ -143,6 +152,39 @@ class AppRouter {
           return BlocProvider(
             create: (_) => ExecuteCubit(),
             child: const SignUpPage(),
+          );
+        },
+      ),
+
+      GoRoute(
+        path: AppRoutes.viewAllSeries,
+        name: AppRoutes.viewAllSeries,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (_) => ViewAllCubit(movieType: MovieType.series),
+            child: const ViewAllSeriesMoviePage(),
+          );
+        },
+      ),
+
+      GoRoute(
+        path: AppRoutes.viewAllSingle,
+        name: AppRoutes.viewAllSingle,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (_) => ViewAllCubit(movieType: MovieType.single),
+            child: const ViewAllSingleMoviePage(),
+          );
+        },
+      ),
+
+      GoRoute(
+        path: AppRoutes.viewAllCartoon,
+        name: AppRoutes.viewAllCartoon,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (_) => ViewAllCubit(movieType: MovieType.cartoon),
+            child: const ViewAllCartoonMoviePage(),
           );
         },
       ),

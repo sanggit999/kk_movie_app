@@ -18,6 +18,7 @@ import 'package:kk_movie_app/presentation/auth/widgets/auth_divider.dart';
 import 'package:kk_movie_app/presentation/auth/widgets/auth_rich_text.dart';
 import 'package:kk_movie_app/presentation/auth/widgets/google_button.dart';
 import 'package:kk_movie_app/router/app_routes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -30,6 +31,19 @@ class _SignInPageState extends State<SignInPage> {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final pwController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCachedEmail();
+  }
+
+
+  Future<void> _loadCachedEmail() async {
+    final prefs = await SharedPreferences.getInstance();
+    final cachedEmail = prefs.getString('cached_email') ?? '';
+    emailController.text = cachedEmail;
+  }
 
   @override
   void dispose() {
@@ -51,6 +65,7 @@ class _SignInPageState extends State<SignInPage> {
                 if (state is ExecuteFailure) {
                   final message = switch (state.message) {
                     'invalid-credential' => S.current.invalidCredential,
+                    'no-connection' => S.current.noConnection,
                     _ => S.current.unknownError,
                   };
 

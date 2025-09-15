@@ -47,6 +47,19 @@
   "OK": "OK",
   "notification": "Notification",
 
+  "noConnection": "No connection",
+  "goOnline": "Go back online",
+
+  "tvSeries": "TV Series",
+  "movie": "Movie",
+  "cartoon": "Cartoon",
+  "viewAll": "View all",
+  "latest": "Latest",
+  "oldest": "Oldest",
+  "vietSub": "Vietsub",
+  "subtitled": "Subtitled",
+  "dubbed": "Dubbed",
+
   "english": "English",
   "vietnamese": "Vietnamese"
 }

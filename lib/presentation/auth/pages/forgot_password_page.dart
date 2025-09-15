@@ -9,8 +9,6 @@ import 'package:kk_movie_app/core/utils/dialog/dialogs.dart';
 import 'package:kk_movie_app/di.dart';
 import 'package:kk_movie_app/domain/auth/usecases/send_password_reset_email_usecase.dart';
 import 'package:kk_movie_app/l10n/l10n.dart';
-import 'package:kk_movie_app/presentation/auth/cubit/auth_cubit.dart';
-import 'package:kk_movie_app/presentation/auth/cubit/auth_state.dart';
 import 'package:kk_movie_app/core/utils/validator/validators.dart';
 import 'package:kk_movie_app/presentation/auth/widgets/auth_button.dart';
 import 'package:kk_movie_app/router/app_routes.dart';
@@ -42,9 +40,14 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           child: BlocListener<ExecuteCubit, ExecuteState>(
             listener: (context, state) {
               if (state is ExecuteFailure) {
+                final message = switch (state.message) {
+                  'no-connection' => S.current.noConnection,
+                  _ => S.current.unknownError,
+                };
+
                 Dialogs.showErrorDialog(
                   context: context,
-                  message: state.message,
+                  message: message,
                   title: S.current.notification,
                   onPressed: () => context.pop(),
                 );

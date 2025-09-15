@@ -5,3 +5,15 @@ abstract class UseCase<T, Params> {
 class NoParams {
   const NoParams();
 }
+
+class GetViewAllParams {
+  final int page;
+  final String? sortType;
+  final String? sortLang;
+
+  GetViewAllParams({
+    required this.page,
+    this.sortType,
+    this.sortLang,
+  });
+}

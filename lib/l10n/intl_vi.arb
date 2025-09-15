@@ -43,9 +43,23 @@
   "unknownError": "Lỗi không xác định",
   "invalidCredential": "Email hoặc mật khẩu không đúng",
   "resetPasswordRequestSuccess": "Yêu cầu đặt lại mật khẩu thành công. Vui lòng kiểm tra email (bao gồm cả hộp thư rác).",
+
   "OK": "OK",
   "notification" : "Thông báo",
 
-  "English": "Tiếng Anh",
-  "Vietnamese": "Tiếng Việt"
+  "noConnection" : "Không có kết nối",
+  "goOnline": "Quay lại trực tuyến",
+
+  "tvSeries": "Phim bộ",
+  "movie" : "Phim lẻ",
+  "cartoon": "Phim hoạt hình",
+  "viewAll": "Xem tất cả",
+  "latest": "Mới nhất",
+  "oldest": "Cũ nhất",
+  "vietSub": "Vietsub",
+  "subtitled": "Thuyết minh",
+  "dubbed": "Lồng tiếng",
+
+  "english": "Tiếng Anh",
+  "vietnamese": "Tiếng Việt"
 }

@@ -3,10 +3,8 @@ import 'package:kk_movie_app/core/usecase/usecase.dart';
 import 'package:kk_movie_app/di.dart';
 import 'package:kk_movie_app/domain/auth/entities/user_entity.dart';
 import 'package:kk_movie_app/domain/auth/usecases/get_current_user_usecase.dart';
-import 'package:kk_movie_app/domain/auth/usecases/send_password_reset_email_usecase.dart';
 import 'package:kk_movie_app/domain/auth/usecases/signin_with_google_usecase.dart';
 import 'package:kk_movie_app/domain/auth/usecases/sign_out_usecase.dart';
-import 'package:kk_movie_app/domain/auth/usecases/signup_usecase.dart';
 import 'package:kk_movie_app/presentation/auth/cubit/auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {

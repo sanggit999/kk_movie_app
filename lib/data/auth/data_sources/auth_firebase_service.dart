@@ -187,11 +187,12 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
           createdAt: firebaseUser.metadata.creationTime ?? DateTime.now(),
         );
         return userModel;
+
       }
 
       throw ServerException(message: 'user-not-found');
     } catch (e) {
-      throw ServerException(message: e.toString());
+      throw Left(ServerException(message: e.toString()));
     }
   }
 

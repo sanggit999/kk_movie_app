@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "OK": MessageLookupByLibrary.simpleMessage("OK"),
     "appTitle": MessageLookupByLibrary.simpleMessage("KK Movies"),
+    "cartoon": MessageLookupByLibrary.simpleMessage("Phim hoạt hình"),
     "categories": MessageLookupByLibrary.simpleMessage("Thể loại"),
     "confirmPassword": MessageLookupByLibrary.simpleMessage(
       "Xác nhận mật khẩu",
@@ -34,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirmPasswordMismatch": MessageLookupByLibrary.simpleMessage(
       "Mật khẩu xác nhận không khớp",
     ),
+    "dubbed": MessageLookupByLibrary.simpleMessage("Lồng tiếng"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
     "emailAlreadyInUse": MessageLookupByLibrary.simpleMessage(
       "Địa chỉ email này đã được sử dụng",
@@ -42,7 +44,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Email không được để trống",
     ),
     "emailInvalid": MessageLookupByLibrary.simpleMessage("Email không hợp lệ"),
+    "english": MessageLookupByLibrary.simpleMessage("Tiếng Anh"),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Quên mật khẩu"),
+    "goOnline": MessageLookupByLibrary.simpleMessage("Quay lại trực tuyến"),
     "haveAccount": MessageLookupByLibrary.simpleMessage("Đã có tài khoản? "),
     "home": MessageLookupByLibrary.simpleMessage("Trang chủ"),
     "invalidCredential": MessageLookupByLibrary.simpleMessage(
@@ -50,13 +54,17 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "invalidEmail": MessageLookupByLibrary.simpleMessage("Email không hợp lệ"),
     "language": MessageLookupByLibrary.simpleMessage("Ngôn ngữ"),
+    "latest": MessageLookupByLibrary.simpleMessage("Mới nhất"),
+    "movie": MessageLookupByLibrary.simpleMessage("Phim lẻ"),
     "name": MessageLookupByLibrary.simpleMessage("Tên"),
     "nameEmpty": MessageLookupByLibrary.simpleMessage(
       "Tên không được để trống",
     ),
     "nameTooLong": MessageLookupByLibrary.simpleMessage("Tên quá dài"),
     "noAccount": MessageLookupByLibrary.simpleMessage("Chưa có tài khoản? "),
+    "noConnection": MessageLookupByLibrary.simpleMessage("Không có kết nối"),
     "notification": MessageLookupByLibrary.simpleMessage("Thông báo"),
+    "oldest": MessageLookupByLibrary.simpleMessage("Cũ nhất"),
     "operationNotAllowed": MessageLookupByLibrary.simpleMessage(
       "Thao tác này không được phép",
     ),
@@ -84,6 +92,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "signIn": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
     "signOut": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
     "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký"),
+    "subtitled": MessageLookupByLibrary.simpleMessage("Thuyết minh"),
+    "tvSeries": MessageLookupByLibrary.simpleMessage("Phim bộ"),
     "unknownError": MessageLookupByLibrary.simpleMessage("Lỗi không xác định"),
     "userDisabled": MessageLookupByLibrary.simpleMessage(
       "Tài khoản đã bị vô hiệu hóa",
@@ -91,6 +101,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "userNotFound": MessageLookupByLibrary.simpleMessage(
       "Không tìm thấy người dùng",
     ),
+    "vietSub": MessageLookupByLibrary.simpleMessage("Vietsub"),
+    "vietnamese": MessageLookupByLibrary.simpleMessage("Tiếng Việt"),
+    "viewAll": MessageLookupByLibrary.simpleMessage("Xem tất cả"),
     "watchlist": MessageLookupByLibrary.simpleMessage("Xem sau"),
     "weakPassword": MessageLookupByLibrary.simpleMessage("Mật khẩu quá yếu"),
     "wrongPassword": MessageLookupByLibrary.simpleMessage("Sai mật khẩu"),
