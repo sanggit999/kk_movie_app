@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kk_movie_app/common/cubit/execute_cubit.dart';
 import 'package:kk_movie_app/common/cubit/execute_state.dart';
-import 'package:kk_movie_app/presentation/auth/cubit/auth_cubit.dart';
-import 'package:kk_movie_app/presentation/auth/cubit/auth_state.dart';
 
 class AuthButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -22,6 +20,7 @@ class AuthButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ExecuteCubit, ExecuteState>(
       builder: (context, state) {
+        print("Rebuild với state: $state");
         final isLoading = state is ExecuteLoading;
 
         return ElevatedButton(

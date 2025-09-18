@@ -5,14 +5,29 @@ import 'package:kk_movie_app/presentation/auth/cubit/auth_cubit.dart';
 import 'package:kk_movie_app/presentation/auth/cubit/auth_state.dart';
 import 'package:kk_movie_app/router/app_routes.dart';
 
-class SplashPage extends StatelessWidget {
+class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
+
+  @override
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<AuthCubit>().checkAuth();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 25, 25, 25),
       body: BlocListener<AuthCubit, AuthState>(
+        listenWhen: (previous, current) {
+          return current is Authenticated || current is Unauthenticated;
+        },
         listener: (context, state) {
           if (state is Authenticated) {
             context.go(AppRoutes.home);

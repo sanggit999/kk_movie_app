@@ -15,6 +15,9 @@ class GoogleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthState>(
+      listenWhen: (previous, current) {
+        return current is  AuthError || current is Authenticated;
+      },
       listener: (context, state) {
         if (state is AuthError) {
           final message = switch (state.message) {

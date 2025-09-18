@@ -53,6 +53,9 @@ class _ViewAllSingleMoviePageState extends State<ViewAllSingleMoviePage> {
       ),
       body: SafeArea(
         child: BlocBuilder<ViewAllCubit, ViewAllState>(
+          buildWhen: (previous, current) {
+            return previous != current;
+          },
           builder: (context, state) {
             if (state.isViewAllSingleMovieLoading) {
               return Center(

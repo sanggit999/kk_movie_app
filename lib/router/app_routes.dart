@@ -13,7 +13,7 @@ class AppRoutes {
   static const viewAllSeries = '/view_all_series';
   static const viewAllSingle = '/view_all_single';
   static const viewAllCartoon = '/view_all_cartoon';
-
+  static const movieDetail = '/movie_detail';
   // static const movieDetail = '/movie/:id';
   // static const settings = '/settings';
 }

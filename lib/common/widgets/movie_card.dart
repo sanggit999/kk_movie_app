@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kk_movie_app/common/cubit/language_cubit.dart';
 import 'package:kk_movie_app/core/constants/api_url.dart';
 import 'package:kk_movie_app/domain/movie/entities/movie_entity.dart';
+import 'package:kk_movie_app/router/app_routes.dart';
 
 class MovieCard extends StatelessWidget {
   final MovieEntity movieEntity;
@@ -15,7 +17,7 @@ class MovieCard extends StatelessWidget {
     final currentLocale = context.watch<LanguageCubit>().state;
     return GestureDetector(
       onTap: () {
-        // context.pushNamed(AppRoutes.detailMovie, extra: movieEntity);
+        context.pushNamed(AppRoutes.movieDetail, extra: movieEntity.slug);
       },
       child: Container(
         width: 180.0,

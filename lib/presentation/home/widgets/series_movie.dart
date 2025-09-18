@@ -18,6 +18,9 @@ class SeriesMovie extends StatelessWidget {
       children: [
         _tvSeriesTitle(context),
         BlocBuilder<HomeCubit, HomeState>(
+          buildWhen: (previous, current) {
+            return previous != current;
+          },
           builder: (context, state) {
             if (state.isSeriesMovieLoading) {
               return const ListViewShimmer();

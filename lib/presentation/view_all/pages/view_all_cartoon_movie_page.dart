@@ -54,6 +54,9 @@ class _ViewAllCartoonMoviePageState extends State<ViewAllCartoonMoviePage> {
       ),
       body: SafeArea(
         child: BlocBuilder<ViewAllCubit, ViewAllState>(
+          buildWhen: (previous, current) {
+            return previous != current;
+          },
           builder: (context, state) {
             if (state.isViewAllCartoonMovieLoading) {
               return Center(
@@ -70,6 +73,7 @@ class _ViewAllCartoonMoviePageState extends State<ViewAllCartoonMoviePage> {
             return _viewAllCartoonMovie(
               state.viewAllCartoonMovie,
               state.isLoadingPage,
+              state.hasMore,
             );
           },
         ),
@@ -88,6 +92,7 @@ class _ViewAllCartoonMoviePageState extends State<ViewAllCartoonMoviePage> {
   Widget _viewAllCartoonMovie(
     List<MovieEntity> movieEntity,
     bool isLoadingPage,
+    bool hasMore,
   ) => RefreshIndicator(
     key: _refreshIndicatorKey,
     color: Theme.of(context).colorScheme.inversePrimary,
@@ -130,6 +135,16 @@ class _ViewAllCartoonMoviePageState extends State<ViewAllCartoonMoviePage> {
           Center(
             child: CircularProgressIndicator(
               color: Theme.of(context).colorScheme.inversePrimary,
+            ),
+          )
+        else if (!hasMore)
+          Center(
+            child: Text(
+              "Đã tải hết dữ liệu",
+              style: TextStyle(
+                fontSize: 14.0,
+                color: Theme.of(context).hintColor,
+              ),
             ),
           ),
       ],

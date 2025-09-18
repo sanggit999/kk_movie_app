@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:kk_movie_app/common/widgets/base_elevated_button.dart';
 import 'package:kk_movie_app/l10n/l10n.dart';
 

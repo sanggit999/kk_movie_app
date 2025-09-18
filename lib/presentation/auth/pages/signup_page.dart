@@ -5,16 +5,13 @@ import 'package:kk_movie_app/common/cubit/execute_cubit.dart';
 import 'package:kk_movie_app/common/cubit/execute_state.dart';
 import 'package:kk_movie_app/common/widgets/base_app_bar.dart';
 import 'package:kk_movie_app/common/widgets/base_text_form_field.dart';
-import 'package:kk_movie_app/core/usecase/usecase.dart';
 import 'package:kk_movie_app/core/utils/dialog/dialogs.dart';
 import 'package:kk_movie_app/data/auth/models/user_signup_req.dart';
 import 'package:kk_movie_app/di.dart';
 import 'package:kk_movie_app/domain/auth/entities/user_entity.dart';
-import 'package:kk_movie_app/domain/auth/usecases/signin_with_google_usecase.dart';
 import 'package:kk_movie_app/domain/auth/usecases/signup_usecase.dart';
 import 'package:kk_movie_app/l10n/l10n.dart';
 import 'package:kk_movie_app/presentation/auth/cubit/auth_cubit.dart';
-import 'package:kk_movie_app/presentation/auth/cubit/auth_state.dart';
 import 'package:kk_movie_app/core/utils/validator/validators.dart';
 import 'package:kk_movie_app/presentation/auth/widgets/auth_button.dart';
 import 'package:kk_movie_app/presentation/auth/widgets/auth_divider.dart';
@@ -48,12 +45,15 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar(hideLeading:false,title: Text(S.current.signUp)),
+      appBar: BaseAppBar(hideLeading: false, title: Text(S.current.signUp)),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: BlocListener<ExecuteCubit, ExecuteState>(
+              listenWhen: (previous, current) {
+                return current is ExecuteFailure || current is ExecuteSuccess;
+              },
               listener: (context, state) {
                 if (state is ExecuteFailure) {
                   final message = switch (state.message) {

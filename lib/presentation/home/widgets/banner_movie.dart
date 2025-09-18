@@ -2,11 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kk_movie_app/common/widgets/shimmer/card_shimmer.dart';
 import 'package:kk_movie_app/core/constants/api_url.dart';
 import 'package:kk_movie_app/domain/movie/entities/movie_entity.dart';
 import 'package:kk_movie_app/presentation/home/cubit/home_cubit.dart';
 import 'package:kk_movie_app/presentation/home/cubit/home_state.dart';
+import 'package:kk_movie_app/router/app_routes.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class BannerMovie extends StatefulWidget {
@@ -27,6 +29,9 @@ class _BannerMovieState extends State<BannerMovie> {
       spacing: 16.0,
       children: [
         BlocBuilder<HomeCubit, HomeState>(
+          buildWhen: (previous, current) {
+            return previous != current;
+          },
           builder: (context, state) {
             if (state.isNewMovieLoading) {
               return const CardShimmer(isBanner: true);
@@ -83,7 +88,9 @@ class _BannerMovieState extends State<BannerMovie> {
   Widget _buildImage(String urlImage, int index, MovieEntity movieEntity) =>
       SizedBox(
         child: GestureDetector(
-          onTap: () {},
+          onTap: () {
+            context.pushNamed(AppRoutes.movieDetail,extra: movieEntity.slug);
+          },
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
             child: CachedNetworkImage(

@@ -53,6 +53,9 @@ class _ViewAllSeriesMoviePageState extends State<ViewAllSeriesMoviePage> {
       ),
       body: SafeArea(
         child: BlocBuilder<ViewAllCubit, ViewAllState>(
+          buildWhen: (previous, current) {
+            return previous != current;
+          },
           builder: (context, state) {
             if (state.isViewAllSeriesMovieLoading) {
               return Center(

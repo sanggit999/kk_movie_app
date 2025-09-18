@@ -3,11 +3,9 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kk_movie_app/core/errors/exceptions.dart';
-import 'package:kk_movie_app/core/errors/failures.dart';
 import 'package:kk_movie_app/data/auth/models/user_model.dart';
 import 'package:kk_movie_app/data/auth/models/user_signin_req.dart';
 import 'package:kk_movie_app/data/auth/models/user_signup_req.dart';
-import 'package:kk_movie_app/domain/auth/entities/user_entity.dart';
 
 abstract class AuthFirebaseService {
   Future<UserModel> signIn(UserSignInReq userSignInReq);

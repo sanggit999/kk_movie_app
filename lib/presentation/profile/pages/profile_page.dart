@@ -43,7 +43,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
               ),
-              Spacer(),
+             const Spacer(),
               BlocConsumer<AuthCubit, AuthState>(
                 listener: (context, state) {
                   if (state is AuthError) {

@@ -18,6 +18,9 @@ class SingleMovie extends StatelessWidget {
       children: [
         _singleTitle(context),
         BlocBuilder<HomeCubit, HomeState>(
+          buildWhen: (previous, current) {
+            return previous != current;
+          },
           builder: (context, state) {
             if (state.isSingleMovieLoading) {
               return const ListViewShimmer();

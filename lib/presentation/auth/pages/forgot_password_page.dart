@@ -33,11 +33,18 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar(hideLeading: false,centerTitle:false,title: Text(S.current.forgotPassword)),
+      appBar: BaseAppBar(
+        hideLeading: false,
+        centerTitle: false,
+        title: Text(S.current.forgotPassword),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: BlocListener<ExecuteCubit, ExecuteState>(
+            listenWhen: (previous, current) {
+              return current is ExecuteFailure || current is ExecuteSuccess;
+            },
             listener: (context, state) {
               if (state is ExecuteFailure) {
                 final message = switch (state.message) {

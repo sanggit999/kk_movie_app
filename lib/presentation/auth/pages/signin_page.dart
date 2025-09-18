@@ -38,7 +38,6 @@ class _SignInPageState extends State<SignInPage> {
     _loadCachedEmail();
   }
 
-
   Future<void> _loadCachedEmail() async {
     final prefs = await SharedPreferences.getInstance();
     final cachedEmail = prefs.getString('cached_email') ?? '';
@@ -61,6 +60,10 @@ class _SignInPageState extends State<SignInPage> {
           child: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: BlocListener<ExecuteCubit, ExecuteState>(
+              listenWhen: (previous, current) {
+                print("buildWhen: $previous -> $current");
+                return current is ExecuteFailure || current is ExecuteSuccess;
+              },
               listener: (context, state) {
                 if (state is ExecuteFailure) {
                   final message = switch (state.message) {

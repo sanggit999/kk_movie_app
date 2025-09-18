@@ -1,6 +1,7 @@
 import 'package:kk_movie_app/core/constants/api_url.dart';
 import 'package:kk_movie_app/core/errors/exceptions.dart';
 import 'package:kk_movie_app/core/network/api_client.dart';
+import 'package:kk_movie_app/data/movie/models/movie_detail_model.dart';
 import 'package:kk_movie_app/data/movie/models/movie_model.dart';
 
 abstract class MovieApiService {
@@ -24,6 +25,8 @@ abstract class MovieApiService {
     String? sortType,
     String? sortLang,
   });
+
+  Future<MovieDetailModel> getMovieDetail(String slug);
 }
 
 class MovieApiServiceImpl implements MovieApiService {
@@ -154,6 +157,17 @@ class MovieApiServiceImpl implements MovieApiService {
       final items = response['data']['items'] as List<dynamic>;
 
       return items.map((json) => MovieModel.fromJson(json)).toList();
+    } catch (e) {
+      throw ServerException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<MovieDetailModel> getMovieDetail(String slug) async {
+    try {
+      final response = await apiClient.get("${ApiUrl.movieDetail}/$slug");
+
+      return MovieDetailModel.fromJson(response);
     } catch (e) {
       throw ServerException(message: e.toString());
     }

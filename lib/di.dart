@@ -17,6 +17,7 @@ import 'package:kk_movie_app/domain/auth/usecases/sign_out_usecase.dart';
 import 'package:kk_movie_app/domain/auth/usecases/signup_usecase.dart';
 import 'package:kk_movie_app/domain/movie/repositories/movie_repository.dart';
 import 'package:kk_movie_app/domain/movie/usecases/get_cartoon_movie_usecase.dart';
+import 'package:kk_movie_app/domain/movie/usecases/get_movie_detail_usecase.dart';
 import 'package:kk_movie_app/domain/movie/usecases/get_new_movie_usecase.dart';
 import 'package:kk_movie_app/domain/movie/usecases/get_series_movie_usecase.dart';
 import 'package:kk_movie_app/domain/movie/usecases/get_single_movie_usecase.dart';
@@ -25,15 +26,12 @@ import 'package:kk_movie_app/domain/movie/usecases/get_view_all_series_movie_use
 import 'package:kk_movie_app/domain/movie/usecases/get_view_all_single_movie_usecase.dart';
 import 'package:kk_movie_app/presentation/auth/cubit/auth_cubit.dart';
 import 'package:http/http.dart' as http;
+import 'package:kk_movie_app/presentation/movie_detail/cubit/movie_detail_cubit.dart';
 
 final getIt = GetIt.instance;
 
 Future<void> initDependencies() async {
   //Connection Checker
-  getIt.registerFactory<InternetCubit>(
-    () => InternetCubit(internetConnection: InternetConnection()),
-  );
-
   getIt.registerFactory<ConnectionChecker>(
     () => ConnectionCheckerImpl(internetConnection: InternetConnection()),
   );
@@ -88,7 +86,15 @@ Future<void> initDependencies() async {
   getIt.registerLazySingleton<GetViewAllCartoonMovieUseCase>(
     () => GetViewAllCartoonMovieUseCase(),
   );
+
+  getIt.registerLazySingleton<GetMovieDetailUseCase>(
+    () => GetMovieDetailUseCase(),
+  );
   //Cubits
   getIt.registerSingleton<LanguageCubit>(LanguageCubit());
   getIt.registerSingleton<AuthCubit>(AuthCubit());
+  getIt.registerFactory<InternetCubit>(
+    () => InternetCubit(internetConnection: InternetConnection()),
+  );
+  getIt.registerLazySingleton<MovieDetailCubit>(() => MovieDetailCubit());
 }

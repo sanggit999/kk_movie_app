@@ -18,6 +18,9 @@ class CartoonMovie extends StatelessWidget {
       children: [
         _cartoonTitle(context),
         BlocBuilder<HomeCubit, HomeState>(
+          buildWhen: (previous, current) {
+            return previous != current;
+          },
           builder: (context, state) {
             if (state.isCartoonMovieLoading) {
               return const ListViewShimmer();

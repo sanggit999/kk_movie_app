@@ -7,6 +7,7 @@ import 'package:kk_movie_app/common/cubit/internet_state.dart';
 import 'package:kk_movie_app/firebase_options.dart';
 import 'package:kk_movie_app/l10n/l10n.dart';
 import 'package:kk_movie_app/presentation/auth/cubit/auth_cubit.dart';
+import 'package:kk_movie_app/presentation/movie_detail/cubit/movie_detail_cubit.dart';
 import 'package:kk_movie_app/router/app_router.dart';
 import 'package:kk_movie_app/di.dart';
 import 'package:kk_movie_app/themes/app_theme.dart';
@@ -19,9 +20,10 @@ Future<void> main() async {
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider.value(value: getIt<AuthCubit>()..checkAuth()),
+        BlocProvider.value(value: getIt<AuthCubit>()),
         BlocProvider.value(value: getIt<LanguageCubit>()),
         BlocProvider.value(value: getIt<InternetCubit>()),
+        BlocProvider.value(value: getIt<MovieDetailCubit>()),
       ],
       child: const MyApp(),
     ),
