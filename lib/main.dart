@@ -23,7 +23,7 @@ Future<void> main() async {
         BlocProvider.value(value: getIt<AuthCubit>()),
         BlocProvider.value(value: getIt<LanguageCubit>()),
         BlocProvider.value(value: getIt<InternetCubit>()),
-        BlocProvider.value(value: getIt<MovieDetailCubit>()),
+        //BlocProvider.value(value: getIt<MovieDetailCubit>()),
       ],
       child: const MyApp(),
     ),

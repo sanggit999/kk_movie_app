@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kk_movie_app/common/cubit/execute_cubit.dart';
-import 'package:kk_movie_app/domain/movie/entities/movie_detail_entity.dart';
 import 'package:kk_movie_app/domain/movie/entities/movie_type.dart';
 import 'package:kk_movie_app/presentation/auth/pages/forgot_password_page.dart';
 import 'package:kk_movie_app/presentation/home/cubit/home_cubit.dart';
+import 'package:kk_movie_app/presentation/movie_detail/cubit/episode_election_cubit.dart';
+import 'package:kk_movie_app/presentation/movie_detail/cubit/movie_detail_cubit.dart';
 import 'package:kk_movie_app/presentation/movie_detail/pages/movie_detail_page.dart';
 import 'package:kk_movie_app/presentation/view_all/cubit/view_all_cubit.dart';
 import 'package:kk_movie_app/presentation/view_all/pages/view_all_cartoon_movie_page.dart';
@@ -196,7 +197,14 @@ class AppRouter {
         name: AppRoutes.movieDetail,
         builder: (context, state) {
           final slug = state.extra as String;
-          return  MovieDetailPage(slug: slug,);
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (_) => MovieDetailCubit()),
+              BlocProvider(create: (_) => EpisodeSelectionCubit()),
+            ],
+
+            child: MovieDetailPage(slug: slug),
+          );
         },
       ),
 
