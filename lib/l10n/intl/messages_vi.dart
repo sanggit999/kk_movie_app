@@ -23,9 +23,11 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "OK": MessageLookupByLibrary.simpleMessage("OK"),
+    "actor": MessageLookupByLibrary.simpleMessage("Diễn viên"),
     "appTitle": MessageLookupByLibrary.simpleMessage("KK Movies"),
     "cartoon": MessageLookupByLibrary.simpleMessage("Phim hoạt hình"),
     "categories": MessageLookupByLibrary.simpleMessage("Thể loại"),
+    "category": MessageLookupByLibrary.simpleMessage("Thể loại"),
     "confirmPassword": MessageLookupByLibrary.simpleMessage(
       "Xác nhận mật khẩu",
     ),
@@ -35,7 +37,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirmPasswordMismatch": MessageLookupByLibrary.simpleMessage(
       "Mật khẩu xác nhận không khớp",
     ),
+    "country": MessageLookupByLibrary.simpleMessage("Quốc gia"),
+    "description": MessageLookupByLibrary.simpleMessage("Nội dung phim"),
+    "director": MessageLookupByLibrary.simpleMessage("Đạo diễn"),
     "dubbed": MessageLookupByLibrary.simpleMessage("Lồng tiếng"),
+    "duration": MessageLookupByLibrary.simpleMessage("Thời lượng"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
     "emailAlreadyInUse": MessageLookupByLibrary.simpleMessage(
       "Địa chỉ email này đã được sử dụng",
@@ -84,6 +90,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Mật khẩu phải ít nhất 8 ký tự",
     ),
     "profile": MessageLookupByLibrary.simpleMessage("Hồ sơ"),
+    "releaseYear": MessageLookupByLibrary.simpleMessage("Năm phát hành"),
     "resetPassword": MessageLookupByLibrary.simpleMessage("Đặt lại mật khẩu"),
     "resetPasswordRequestSuccess": MessageLookupByLibrary.simpleMessage(
       "Yêu cầu đặt lại mật khẩu thành công. Vui lòng kiểm tra email (bao gồm cả hộp thư rác).",
@@ -92,7 +99,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "signIn": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
     "signOut": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
     "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký"),
+    "status": MessageLookupByLibrary.simpleMessage("Tình trạng"),
     "subtitled": MessageLookupByLibrary.simpleMessage("Thuyết minh"),
+    "totalEpisodes": MessageLookupByLibrary.simpleMessage("Số tập"),
     "tvSeries": MessageLookupByLibrary.simpleMessage("Phim bộ"),
     "unknownError": MessageLookupByLibrary.simpleMessage("Lỗi không xác định"),
     "userDisabled": MessageLookupByLibrary.simpleMessage(

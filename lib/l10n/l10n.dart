@@ -464,6 +464,66 @@ class S {
     return Intl.message('Dubbed', name: 'dubbed', desc: '', args: []);
   }
 
+  /// `Status`
+  String get status {
+    return Intl.message('Status', name: 'status', desc: '', args: []);
+  }
+
+  /// `Total episodes`
+  String get totalEpisodes {
+    return Intl.message(
+      'Total episodes',
+      name: 'totalEpisodes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Duration`
+  String get duration {
+    return Intl.message('Duration', name: 'duration', desc: '', args: []);
+  }
+
+  /// `Release year`
+  String get releaseYear {
+    return Intl.message(
+      'Release year',
+      name: 'releaseYear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Director`
+  String get director {
+    return Intl.message('Director', name: 'director', desc: '', args: []);
+  }
+
+  /// `Actor`
+  String get actor {
+    return Intl.message('Actor', name: 'actor', desc: '', args: []);
+  }
+
+  /// `Category`
+  String get category {
+    return Intl.message('Category', name: 'category', desc: '', args: []);
+  }
+
+  /// `Country`
+  String get country {
+    return Intl.message('Country', name: 'country', desc: '', args: []);
+  }
+
+  /// `Movie description`
+  String get description {
+    return Intl.message(
+      'Movie description',
+      name: 'description',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `English`
   String get english {
     return Intl.message('English', name: 'english', desc: '', args: []);

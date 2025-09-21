@@ -4,16 +4,16 @@ import 'package:kk_movie_app/l10n/l10n.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:video_player/video_player.dart';
 
-class VideoPlayerWidget extends StatefulWidget {
+class VideoPlayerMovie extends StatefulWidget {
   final String videoUrl;
 
-  const VideoPlayerWidget({super.key, required this.videoUrl});
+  const VideoPlayerMovie({super.key, required this.videoUrl});
 
   @override
-  State<VideoPlayerWidget> createState() => _VideoPlayerWidgetState();
+  State<VideoPlayerMovie> createState() => _VideoPlayerMovieState();
 }
 
-class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
+class _VideoPlayerMovieState extends State<VideoPlayerMovie> {
   VideoPlayerController? _videoPlayerController;
   ChewieController? _chewieController;
   bool _isLoading = true;
@@ -26,7 +26,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   }
 
   @override
-  void didUpdateWidget(VideoPlayerWidget oldWidget) {
+  void didUpdateWidget(VideoPlayerMovie oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.videoUrl != widget.videoUrl) {
       _disposeControllers();
@@ -116,7 +116,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
     }
 
     return ClipRRect(
-      borderRadius: BorderRadius.circular(10.0),
+      borderRadius: BorderRadius.circular(8.0),
       child: AspectRatio(
         aspectRatio: 16 / 9,
         child: Chewie(controller: _chewieController!),

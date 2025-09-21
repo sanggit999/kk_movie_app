@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kk_movie_app/common/cubit/language_cubit.dart';
 import 'package:kk_movie_app/common/widgets/base_app_bar.dart';
-import 'package:kk_movie_app/domain/movie/entities/movie_detail_entity.dart';
+import 'package:kk_movie_app/l10n/l10n.dart';
 import 'package:kk_movie_app/presentation/movie_detail/cubit/episode_election_cubit.dart';
 import 'package:kk_movie_app/presentation/movie_detail/cubit/episode_selection_state.dart';
 import 'package:kk_movie_app/presentation/movie_detail/cubit/movie_detail_cubit.dart';
 import 'package:kk_movie_app/presentation/movie_detail/cubit/movie_detail_state.dart';
-import 'package:kk_movie_app/presentation/movie_detail/widgets/video_player_widget.dart';
+import 'package:kk_movie_app/presentation/movie_detail/widgets/selectable_chip.dart';
+import 'package:kk_movie_app/presentation/movie_detail/widgets/video_player_movie.dart';
 
 class MovieDetailPage extends StatefulWidget {
   final String slug;
@@ -62,10 +63,6 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
               final servers = movieDetail.episodes ?? [];
 
               return SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                  vertical: 16.0,
-                ),
                 child: BlocBuilder<EpisodeSelectionCubit, EpisodeSelectionState>(
                   buildWhen: (previous, current) {
                     return previous != current;
@@ -76,166 +73,136 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                         currentServer.serverData[selection.episodeIndex];
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      spacing: 10.0,
                       children: [
-                        VideoPlayerWidget(videoUrl: currentEpisode.linkM3u8),
-                        Text(
-                          "${isEnglish ? movieDetail.movie.originName : movieDetail.movie.name} - ${isEnglish ? "Episode ${selection.episodeIndex + 1}" : currentEpisode.name}",
-                          style: const TextStyle(
-                            fontSize: 22.0,
-                            fontWeight: FontWeight.bold,
+                        VideoPlayerMovie(videoUrl: currentEpisode.linkM3u8),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16.0,
+                            vertical: 16.0,
                           ),
-                        ),
-
-                        Wrap(
-                          spacing: 8,
-                          children: List.generate(servers.length, (index) {
-                            final isSelected = selection.serverIndex == index;
-                            return GestureDetector(
-                              onTap: () {
-                                context
-                                    .read<EpisodeSelectionCubit>()
-                                    .selectServer(index);
-                                debugPrint(
-                                  "Chọn server: ${servers[index].serverName}",
-                                );
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.all(10.0),
-                                decoration: BoxDecoration(
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.secondary,
-                                  borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(
-                                    color: isSelected
-                                        ? Theme.of(context).colorScheme.primary
-                                        : Theme.of(
-                                            context,
-                                          ).colorScheme.secondary,
-                                    width: 1,
-                                  ),
-                                ),
-                                child: Text(
-                                  servers[index].serverName,
-                                  style: TextStyle(
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.inversePrimary,
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            spacing: 10.0,
+                            children: [
+                              Text(
+                                "${isEnglish ? movieDetail.movie.originName : movieDetail.movie.name} - ${isEnglish ? "Episode ${selection.episodeIndex + 1}" : currentEpisode.name}",
+                                style: const TextStyle(
+                                  fontSize: 22.0,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
-                            );
-                          }),
-                        ),
 
-                        Wrap(
-                          spacing: 8,
-                          runSpacing: 8,
-                          children: List.generate(
-                            currentServer.serverData.length,
-                            (index) {
-                              final ep = currentServer.serverData[index];
-                              final isSelected =
-                                  selection.episodeIndex == index;
-                              return GestureDetector(
-                                onTap: () {
-                                  context
-                                      .read<EpisodeSelectionCubit>()
-                                      .selectEpisode(index);
-                                  debugPrint("Chọn tập: ${ep.name}");
-                                },
-                                child: Container(
-                                  width: 100,
-                                  alignment: Alignment.center,
-                                  padding: const EdgeInsets.all(10.0),
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.secondary,
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(
-                                      color: isSelected
-                                          ? Theme.of(
-                                              context,
-                                            ).colorScheme.primary
-                                          : Theme.of(
-                                              context,
-                                            ).colorScheme.secondary,
-                                      width: 1,
+                              Wrap(
+                                spacing: 8,
+                                children: List.generate(servers.length, (
+                                  index,
+                                ) {
+                                  final isSelected =
+                                      selection.serverIndex == index;
+                                  return SelectableChip(
+                                    label: servers[index].serverName,
+                                    isSelected: isSelected,
+                                    onTap: () {
+                                      context
+                                          .read<EpisodeSelectionCubit>()
+                                          .selectServer(index);
+                                      debugPrint(
+                                        "Chọn server: ${servers[index].serverName}",
+                                      );
+                                    },
+                                  );
+                                }),
+                              ),
+
+                              Wrap(
+                                spacing: 8,
+                                runSpacing: 8,
+                                children: List.generate(
+                                  currentServer.serverData.length,
+                                  (index) {
+                                    final ep = currentServer.serverData[index];
+                                    final isSelected =
+                                        selection.episodeIndex == index;
+                                    return SelectableChip(
+                                      label: isEnglish
+                                          ? "Episode ${index + 1}"
+                                          : ep.name,
+                                      isSelected: isSelected,
+                                      width: 100,
+                                      onTap: () {
+                                        context
+                                            .read<EpisodeSelectionCubit>()
+                                            .selectEpisode(index);
+                                        debugPrint("Chọn tập: ${ep.name}");
+                                      },
+                                    );
+                                  },
+                                ),
+                              ),
+
+                              _infoRow(
+                                "${S.current.status}:",
+                                movieDetail.movie.episodeCurrent!,
+                              ),
+                              _infoRow(
+                                "${S.current.totalEpisodes}:",
+                                movieDetail.movie.episodeTotal!,
+                              ),
+                              _infoRow(
+                                "${S.current.duration}:",
+                                movieDetail.movie.time!,
+                              ),
+                              _infoRow(
+                                "${S.current.releaseYear}:",
+                                movieDetail.movie.year.toString(),
+                              ),
+                              _infoRow(
+                                "${S.current.language}:",
+                                movieDetail.movie.lang!,
+                              ),
+                              _infoRow(
+                                "${S.current.director}:",
+                                movieDetail.movie.director!.join(','),
+                              ),
+                              _infoRow(
+                                "${S.current.actor}:",
+                                movieDetail.movie.actor!.join(','),
+                              ),
+                              _infoRow(
+                                "${S.current.category}:",
+                                movieDetail.movie.category!
+                                    .map((c) => c.name)
+                                    .join(', '),
+                              ),
+                              _infoRow(
+                                "${S.current.country}:",
+                                movieDetail.movie.country!
+                                    .map((c) => c.name)
+                                    .join(', '),
+                              ),
+
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                spacing: 2.0,
+                                children: [
+                                  Text(
+                                    "${S.current.description}:",
+                                    style: const TextStyle(
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.w400,
                                     ),
                                   ),
-                                  child: Text(
-                                    isEnglish
-                                        ? "Episode ${index + 1}"
-                                        : ep.name,
-                                    style: TextStyle(
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.inversePrimary,
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.w500,
+                                  Text(
+                                    movieDetail.movie.content!,
+                                    style: const TextStyle(
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                ),
-                              );
-                            },
+                                ],
+                              ),
+                            ],
                           ),
-                        ),
-
-                        _infoRow(
-                          'Tình trạng:',
-                          movieDetail.movie.episodeCurrent!,
-                        ),
-                        _infoRow('Số tập:', movieDetail.movie.episodeTotal!),
-                        _infoRow('Thời lượng:', movieDetail.movie.time!),
-                        _infoRow(
-                          'Năm phát hành:',
-                          movieDetail.movie.year.toString(),
-                        ),
-                        _infoRow('Ngôn ngữ:', movieDetail.movie.lang!),
-                        _infoRow(
-                          'Đạo diễn:',
-                          movieDetail.movie.director!.join(','),
-                        ),
-                        _infoRow(
-                          'Diễn viên:',
-                          movieDetail.movie.actor!.join(','),
-                        ),
-                        _infoRow(
-                          'Thể loại:',
-                          movieDetail.movie.category!
-                              .map((c) => c.name)
-                              .join(', '),
-                        ),
-                        _infoRow(
-                          'Quốc gia:',
-                          movieDetail.movie.country!
-                              .map((c) => c.name)
-                              .join(', '),
-                        ),
-
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          spacing: 2.0,
-                          children: [
-                            const Text(
-                              'Nôi dụng phim:',
-                              style: TextStyle(
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            Text(
-                              movieDetail.movie.content!,
-                              style: const TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
                         ),
                       ],
                     );
@@ -270,5 +237,37 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
         ),
       ),
     ],
+  );
+
+  Widget _selectableChip(
+    String label,
+    bool isSelected,
+    VoidCallback onTap,
+    double? width,
+  ) => GestureDetector(
+    onTap: onTap,
+    child: Container(
+      width: width,
+      alignment: Alignment.center,
+      padding: const EdgeInsets.all(10.0),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.secondary,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: isSelected
+              ? Theme.of(context).colorScheme.primary
+              : Theme.of(context).colorScheme.secondary,
+          width: 1.0,
+        ),
+      ),
+      child: Text(
+        label,
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.inversePrimary,
+          fontSize: 14.0,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+    ),
   );
 }

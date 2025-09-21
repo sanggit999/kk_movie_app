@@ -60,6 +60,16 @@
   "subtitled": "Thuyết minh",
   "dubbed": "Lồng tiếng",
 
+  "status": "Tình trạng",
+  "totalEpisodes": "Số tập",
+  "duration": "Thời lượng",
+  "releaseYear": "Năm phát hành",
+  "director": "Đạo diễn",
+  "actor": "Diễn viên",
+  "category": "Thể loại",
+  "country": "Quốc gia",
+  "description": "Nội dung phim",
+
   "english": "Tiếng Anh",
   "vietnamese": "Tiếng Việt"
 }

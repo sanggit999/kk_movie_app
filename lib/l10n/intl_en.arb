@@ -60,6 +60,17 @@
   "subtitled": "Subtitled",
   "dubbed": "Dubbed",
 
+  "status": "Status",
+  "totalEpisodes": "Total episodes",
+  "duration": "Duration",
+  "releaseYear": "Release year",
+  "director": "Director",
+  "actor": "Actor",
+  "category": "Category",
+  "country": "Country",
+  "description": "Movie description",
+
+
   "english": "English",
   "vietnamese": "Vietnamese"
 }

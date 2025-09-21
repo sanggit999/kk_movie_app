@@ -23,9 +23,11 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "OK": MessageLookupByLibrary.simpleMessage("OK"),
+    "actor": MessageLookupByLibrary.simpleMessage("Actor"),
     "appTitle": MessageLookupByLibrary.simpleMessage("KK Movies"),
     "cartoon": MessageLookupByLibrary.simpleMessage("Cartoon"),
     "categories": MessageLookupByLibrary.simpleMessage("Categories"),
+    "category": MessageLookupByLibrary.simpleMessage("Category"),
     "confirmPassword": MessageLookupByLibrary.simpleMessage("Confirm Password"),
     "confirmPasswordEmpty": MessageLookupByLibrary.simpleMessage(
       "Confirm password cannot be empty",
@@ -33,7 +35,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirmPasswordMismatch": MessageLookupByLibrary.simpleMessage(
       "Confirm password does not match",
     ),
+    "country": MessageLookupByLibrary.simpleMessage("Country"),
+    "description": MessageLookupByLibrary.simpleMessage("Movie description"),
+    "director": MessageLookupByLibrary.simpleMessage("Director"),
     "dubbed": MessageLookupByLibrary.simpleMessage("Dubbed"),
+    "duration": MessageLookupByLibrary.simpleMessage("Duration"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
     "emailAlreadyInUse": MessageLookupByLibrary.simpleMessage(
       "The email address is already in use",
@@ -82,6 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Password must be at least 8 characters",
     ),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+    "releaseYear": MessageLookupByLibrary.simpleMessage("Release year"),
     "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
     "resetPasswordRequestSuccess": MessageLookupByLibrary.simpleMessage(
       "Password reset request successful. Please check your email (including the spam folder).",
@@ -90,7 +97,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
     "signOut": MessageLookupByLibrary.simpleMessage("Sign out"),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+    "status": MessageLookupByLibrary.simpleMessage("Status"),
     "subtitled": MessageLookupByLibrary.simpleMessage("Subtitled"),
+    "totalEpisodes": MessageLookupByLibrary.simpleMessage("Total episodes"),
     "tvSeries": MessageLookupByLibrary.simpleMessage("TV Series"),
     "unknownError": MessageLookupByLibrary.simpleMessage("Unknown error"),
     "userDisabled": MessageLookupByLibrary.simpleMessage("User disabled"),
