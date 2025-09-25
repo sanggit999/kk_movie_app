@@ -13,7 +13,7 @@ class ApiClient {
 
   final String _baseUrl = ApiUrl.baseUrl;
 
-  Future<Map<String, dynamic>> get(String endpoint) async {
+  Future<dynamic> get(String endpoint) async {
     final uri = Uri.parse('$_baseUrl/$endpoint');
     if (!kReleaseMode) _logRequest('GET', uri.toString());
 

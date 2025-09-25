@@ -69,6 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "nameTooLong": MessageLookupByLibrary.simpleMessage("Tên quá dài"),
     "noAccount": MessageLookupByLibrary.simpleMessage("Chưa có tài khoản? "),
     "noConnection": MessageLookupByLibrary.simpleMessage("Không có kết nối"),
+    "noData": MessageLookupByLibrary.simpleMessage("Không có dữ liệu"),
     "notification": MessageLookupByLibrary.simpleMessage("Thông báo"),
     "oldest": MessageLookupByLibrary.simpleMessage("Cũ nhất"),
     "operationNotAllowed": MessageLookupByLibrary.simpleMessage(

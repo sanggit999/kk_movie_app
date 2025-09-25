@@ -5,12 +5,13 @@ import 'package:kk_movie_app/di.dart';
 import 'package:kk_movie_app/domain/movie/entities/movie_entity.dart';
 import 'package:kk_movie_app/domain/movie/repositories/movie_repository.dart';
 
-class GetViewAllSingleMovieUseCase
-    implements UseCase<Either<Failure, List<MovieEntity>>, GetViewAllParams> {
+class GetViewAllMoviesUseCase
+    implements UseCase<Either<Failure, List<MovieEntity>>, GetMovieParams> {
   @override
-  Future<Either<Failure, List<MovieEntity>>> call(GetViewAllParams params) {
-    return getIt<MovieRepository>().getViewAllSingleMovie(
-      params.page,
+  Future<Either<Failure, List<MovieEntity>>> call(GetMovieParams params) {
+    return getIt<MovieRepository>().getViewAllMovies(
+      params.movieType,
+      page: params.page,
       sortType: params.sortType,
       sortLang: params.sortLang,
     );

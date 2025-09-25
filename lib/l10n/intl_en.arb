@@ -70,6 +70,7 @@
   "country": "Country",
   "description": "Movie description",
 
+  "noData": "Không có dữ liệu",
 
   "english": "English",
   "vietnamese": "Vietnamese"

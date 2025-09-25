@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kk_movie_app/common/cubit/language_cubit.dart';
-import 'package:kk_movie_app/common/widgets/base_app_bar.dart';
+import 'package:kk_movie_app/common/widgets/appbar/base_app_bar.dart';
 import 'package:kk_movie_app/l10n/l10n.dart';
 import 'package:kk_movie_app/presentation/movie_detail/cubit/episode_election_cubit.dart';
 import 'package:kk_movie_app/presentation/movie_detail/cubit/episode_selection_state.dart';
@@ -35,7 +35,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
         preferredSize: const Size.fromHeight(50.0),
         child: BlocBuilder<MovieDetailCubit, MovieDetailState>(
           buildWhen: (previous, current) {
-            return current is MovieDetailLoaded;
+            return previous != current;
           },
           builder: (context, state) {
             String title = "";
@@ -54,10 +54,18 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
       ),
       body: SafeArea(
         child: BlocBuilder<MovieDetailCubit, MovieDetailState>(
+          buildWhen: (previous, current) {
+            return previous != current;
+          },
           builder: (context, state) {
             if (state is MovieDetailLoading) {
-              return const Center(child: CircularProgressIndicator());
+              return Center(
+                child: CircularProgressIndicator(
+                  color: Theme.of(context).colorScheme.inversePrimary,
+                ),
+              );
             }
+
             if (state is MovieDetailLoaded) {
               final movieDetail = state.movieDetailEntity;
               final servers = movieDetail.episodes ?? [];
@@ -93,7 +101,8 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                               ),
 
                               Wrap(
-                                spacing: 8,
+                                spacing: 16.0,
+                                runSpacing: 18.0,
                                 children: List.generate(servers.length, (
                                   index,
                                 ) {
@@ -115,8 +124,8 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                               ),
 
                               Wrap(
-                                spacing: 8,
-                                runSpacing: 8,
+                                spacing: 8.0,
+                                runSpacing: 8.0,
                                 children: List.generate(
                                   currentServer.serverData.length,
                                   (index) {
@@ -128,7 +137,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                                           ? "Episode ${index + 1}"
                                           : ep.name,
                                       isSelected: isSelected,
-                                      width: 100,
+                                      width: 120,
                                       onTap: () {
                                         context
                                             .read<EpisodeSelectionCubit>()

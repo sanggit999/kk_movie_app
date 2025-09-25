@@ -4,6 +4,7 @@ import 'package:kk_movie_app/core/errors/exceptions.dart';
 import 'package:kk_movie_app/core/errors/failures.dart';
 import 'package:kk_movie_app/core/network/connection_checker.dart';
 import 'package:kk_movie_app/data/auth/data_sources/auth_firebase_service.dart';
+import 'package:kk_movie_app/data/auth/models/user_model.dart';
 import 'package:kk_movie_app/data/auth/models/user_signin_req.dart';
 import 'package:kk_movie_app/data/auth/models/user_signup_req.dart';
 import 'package:kk_movie_app/di.dart';
@@ -16,29 +17,17 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, UserEntity>> signIn(UserSignInReq userSignInReq) {
-    return _getUser(
-      () async => UserMapper.toEntity(
-        await getIt<AuthFirebaseService>().signIn(userSignInReq),
-      ),
-    );
+    return _getUser(() => getIt<AuthFirebaseService>().signIn(userSignInReq));
   }
 
   @override
   Future<Either<Failure, UserEntity>> signUp(UserSignUpReq userSignUpReq) {
-    return _getUser(
-      () async => UserMapper.toEntity(
-        await getIt<AuthFirebaseService>().signUp(userSignUpReq),
-      ),
-    );
+    return _getUser(() => getIt<AuthFirebaseService>().signUp(userSignUpReq));
   }
 
   @override
   Future<Either<Failure, UserEntity>> signInWithGoogle() {
-    return _getUser(
-      () async => UserMapper.toEntity(
-        await getIt<AuthFirebaseService>().signInWithGoogle(),
-      ),
-    );
+    return _getUser(() => getIt<AuthFirebaseService>().signInWithGoogle());
   }
 
   @override
@@ -61,11 +50,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, UserEntity>> getCurrentUser() {
-    return _getUser(
-      () async => UserMapper.toEntity(
-        await getIt<AuthFirebaseService>().getCurrentUser(),
-      ),
-    );
+    return _getUser(() => getIt<AuthFirebaseService>().getCurrentUser());
   }
 
   @override
@@ -76,13 +61,15 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   Future<Either<Failure, UserEntity>> _getUser(
-    Future<UserEntity> Function() fn,
+    Future<UserModel> Function() fn,
   ) async {
     try {
       if (!await (connectionChecker.isConnected)) {
         return const Left(NetworkFailure(message: 'no-connection'));
       }
-      final user = await fn();
+      final result = await fn();
+
+      final user = UserMapper.toEntity(result);
 
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('cached_email', user.email);

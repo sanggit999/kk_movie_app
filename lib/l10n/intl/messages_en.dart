@@ -67,6 +67,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Don\'t have an account? ",
     ),
     "noConnection": MessageLookupByLibrary.simpleMessage("No connection"),
+    "noData": MessageLookupByLibrary.simpleMessage("Không có dữ liệu"),
     "notification": MessageLookupByLibrary.simpleMessage("Notification"),
     "oldest": MessageLookupByLibrary.simpleMessage("Oldest"),
     "operationNotAllowed": MessageLookupByLibrary.simpleMessage(

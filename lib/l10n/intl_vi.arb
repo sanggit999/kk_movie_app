@@ -70,6 +70,8 @@
   "country": "Quốc gia",
   "description": "Nội dung phim",
 
+  "noData": "Không có dữ liệu",
+
   "english": "Tiếng Anh",
   "vietnamese": "Tiếng Việt"
 }

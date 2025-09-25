@@ -524,6 +524,11 @@ class S {
     );
   }
 
+  /// `Không có dữ liệu`
+  String get noData {
+    return Intl.message('Không có dữ liệu', name: 'noData', desc: '', args: []);
+  }
+
   /// `English`
   String get english {
     return Intl.message('English', name: 'english', desc: '', args: []);
