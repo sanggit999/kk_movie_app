@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kk_movie_app/common/cubit/language_cubit.dart';
-import 'package:kk_movie_app/common/widgets/base_app_bar.dart';
+import 'package:kk_movie_app/common/widgets/appbar/base_app_bar.dart';
 import 'package:kk_movie_app/l10n/l10n.dart';
 
 class LanguagePage extends StatelessWidget {

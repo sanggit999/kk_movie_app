@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kk_movie_app/common/widgets/base_elevated_button.dart';
+import 'package:kk_movie_app/common/widgets/button/base_elevated_button.dart';
 import 'package:kk_movie_app/l10n/l10n.dart';
 
 class Dialogs {

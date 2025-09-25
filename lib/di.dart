@@ -6,6 +6,8 @@ import 'package:kk_movie_app/core/network/api_client.dart';
 import 'package:kk_movie_app/core/network/connection_checker.dart';
 import 'package:kk_movie_app/data/auth/data_sources/auth_firebase_service.dart';
 import 'package:kk_movie_app/data/auth/repositories_impl/auth_repository_impl.dart';
+import 'package:kk_movie_app/data/category/data_source/category_api_service.dart';
+import 'package:kk_movie_app/data/category/repositories_impl/category_repository_impl.dart';
 import 'package:kk_movie_app/data/movie/data_sources/movie_api_service.dart';
 import 'package:kk_movie_app/data/movie/repositories_impl/movie_repository_impl.dart';
 import 'package:kk_movie_app/domain/auth/repositories/auth_repository.dart';
@@ -15,15 +17,16 @@ import 'package:kk_movie_app/domain/auth/usecases/signin_usecase.dart';
 import 'package:kk_movie_app/domain/auth/usecases/signin_with_google_usecase.dart';
 import 'package:kk_movie_app/domain/auth/usecases/sign_out_usecase.dart';
 import 'package:kk_movie_app/domain/auth/usecases/signup_usecase.dart';
+import 'package:kk_movie_app/domain/category/repositories/category_repository.dart';
+import 'package:kk_movie_app/domain/category/usecases/get_categories_usecase.dart';
+import 'package:kk_movie_app/domain/category/usecases/get_category_detail_usecase.dart';
 import 'package:kk_movie_app/domain/movie/repositories/movie_repository.dart';
 import 'package:kk_movie_app/domain/movie/usecases/get_cartoon_movie_usecase.dart';
 import 'package:kk_movie_app/domain/movie/usecases/get_movie_detail_usecase.dart';
 import 'package:kk_movie_app/domain/movie/usecases/get_new_movie_usecase.dart';
 import 'package:kk_movie_app/domain/movie/usecases/get_series_movie_usecase.dart';
 import 'package:kk_movie_app/domain/movie/usecases/get_single_movie_usecase.dart';
-import 'package:kk_movie_app/domain/movie/usecases/get_view_all_cartoon_movie_usecase.dart';
-import 'package:kk_movie_app/domain/movie/usecases/get_view_all_series_movie_usecase.dart';
-import 'package:kk_movie_app/domain/movie/usecases/get_view_all_single_movie_usecase.dart';
+import 'package:kk_movie_app/domain/movie/usecases/get_view_all_movies_usecase.dart';
 import 'package:kk_movie_app/presentation/auth/cubit/auth_cubit.dart';
 import 'package:http/http.dart' as http;
 import 'package:kk_movie_app/presentation/movie_detail/cubit/movie_detail_cubit.dart';
@@ -48,12 +51,20 @@ Future<void> initDependencies() async {
     () => MovieApiServiceImpl(apiClient: getIt<ApiClient>()),
   );
 
+  getIt.registerLazySingleton<CategoryApiService>(
+    () => CategoryApiServiceImpl(apiClient: getIt<ApiClient>()),
+  );
   //Repositories
   getIt.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl());
 
   getIt.registerLazySingleton<MovieRepository>(() => MovieRepositoryImpl());
 
+  getIt.registerLazySingleton<CategoryRepository>(
+    () => CategoryRepositoryImpl(),
+  );
+
   //UseCases
+  //Auth
   getIt.registerLazySingleton<SignInUseCase>(() => SignInUseCase());
   getIt.registerLazySingleton<SignUpUseCase>(() => SignUpUseCase());
   getIt.registerLazySingleton<SigninWithGoogleUseCase>(
@@ -66,7 +77,7 @@ Future<void> initDependencies() async {
   getIt.registerLazySingleton<SendPasswordResetEmailUseCase>(
     () => SendPasswordResetEmailUseCase(),
   );
-
+  //Movie
   getIt.registerLazySingleton<GetNewMovieUseCase>(() => GetNewMovieUseCase());
   getIt.registerLazySingleton<GetSeriesMovieUseCase>(
     () => GetSeriesMovieUseCase(),
@@ -77,18 +88,21 @@ Future<void> initDependencies() async {
   getIt.registerLazySingleton<GetCartoonMovieUseCase>(
     () => GetCartoonMovieUseCase(),
   );
-  getIt.registerLazySingleton<GetViewAllSeriesMovieUseCase>(
-    () => GetViewAllSeriesMovieUseCase(),
-  );
-  getIt.registerLazySingleton<GetViewAllSingleMovieUseCase>(
-    () => GetViewAllSingleMovieUseCase(),
-  );
-  getIt.registerLazySingleton<GetViewAllCartoonMovieUseCase>(
-    () => GetViewAllCartoonMovieUseCase(),
+
+
+  getIt.registerLazySingleton<GetViewAllMoviesUseCase>(
+    () => GetViewAllMoviesUseCase(),
   );
 
   getIt.registerLazySingleton<GetMovieDetailUseCase>(
     () => GetMovieDetailUseCase(),
+  );
+  //Categories
+  getIt.registerLazySingleton<GetCategoriesUseCase>(
+    () => GetCategoriesUseCase(),
+  );
+  getIt.registerLazySingleton<GetCategoryDetailUseCase>(
+    () => GetCategoryDetailUseCase(),
   );
   //Cubits
   getIt.registerSingleton<LanguageCubit>(LanguageCubit());

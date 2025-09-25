@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kk_movie_app/common/cubit/execute_cubit.dart';
-import 'package:kk_movie_app/domain/movie/entities/movie_type.dart';
+import 'package:kk_movie_app/domain/category/entities/category_entity.dart';
+import 'package:kk_movie_app/core/enums/movie_type.dart';
 import 'package:kk_movie_app/presentation/auth/pages/forgot_password_page.dart';
+import 'package:kk_movie_app/presentation/categories/cubit/category_cubit.dart';
+import 'package:kk_movie_app/presentation/category_detail/cubit/category_detail_cubit.dart';
+import 'package:kk_movie_app/presentation/category_detail/pages/category_detail_page.dart';
 import 'package:kk_movie_app/presentation/home/cubit/home_cubit.dart';
 import 'package:kk_movie_app/presentation/movie_detail/cubit/episode_election_cubit.dart';
 import 'package:kk_movie_app/presentation/movie_detail/cubit/movie_detail_cubit.dart';
 import 'package:kk_movie_app/presentation/movie_detail/pages/movie_detail_page.dart';
 import 'package:kk_movie_app/presentation/view_all/cubit/view_all_cubit.dart';
-import 'package:kk_movie_app/presentation/view_all/pages/view_all_cartoon_movie_page.dart';
-import 'package:kk_movie_app/presentation/view_all/pages/view_all_series_movie_page.dart';
-import 'package:kk_movie_app/presentation/view_all/pages/view_all_single_movie_page.dart';
+import 'package:kk_movie_app/presentation/view_all/pages/view_all_page.dart';
 import 'package:kk_movie_app/router/app_routes.dart';
 import 'package:kk_movie_app/l10n/l10n.dart';
 import 'package:kk_movie_app/presentation/splash/pages/splash_page.dart';
@@ -91,8 +93,12 @@ class AppRouter {
               GoRoute(
                 path: AppRoutes.categories,
                 name: AppRoutes.categories,
-                pageBuilder: (context, state) =>
-                    const NoTransitionPage(child: CategoriesPage()),
+                pageBuilder: (context, state) => NoTransitionPage(
+                  child: BlocProvider(
+                    create: (_) => CategoryCubit()..getCategories(),
+                    child: const CategoriesPage(),
+                  ),
+                ),
               ),
             ],
           ),
@@ -160,34 +166,25 @@ class AppRouter {
       ),
 
       GoRoute(
-        path: AppRoutes.viewAllSeries,
-        name: AppRoutes.viewAllSeries,
+        path: AppRoutes.viewAll,
+        name: AppRoutes.viewAll,
         builder: (context, state) {
+          final type = state.extra as MovieType;
           return BlocProvider(
-            create: (_) => ViewAllCubit(movieType: MovieType.series),
-            child: const ViewAllSeriesMoviePage(),
+            create: (_) => ViewAllCubit(movieType: type),
+            child: ViewAllPage(type: type),
           );
         },
       ),
 
       GoRoute(
-        path: AppRoutes.viewAllSingle,
-        name: AppRoutes.viewAllSingle,
+        path: AppRoutes.categoryDetail,
+        name: AppRoutes.categoryDetail,
         builder: (context, state) {
+          final categoryEntity = state.extra as CategoryEntity;
           return BlocProvider(
-            create: (_) => ViewAllCubit(movieType: MovieType.single),
-            child: const ViewAllSingleMoviePage(),
-          );
-        },
-      ),
-
-      GoRoute(
-        path: AppRoutes.viewAllCartoon,
-        name: AppRoutes.viewAllCartoon,
-        builder: (context, state) {
-          return BlocProvider(
-            create: (_) => ViewAllCubit(movieType: MovieType.cartoon),
-            child: const ViewAllCartoonMoviePage(),
+            create: (_) => CategoryDetailCubit(),
+            child: CategoryDetailPage(categoryEntity: categoryEntity),
           );
         },
       ),

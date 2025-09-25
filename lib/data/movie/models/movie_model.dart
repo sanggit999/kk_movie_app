@@ -1,6 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:kk_movie_app/data/movie/models/imdb_model.dart';
-import 'package:kk_movie_app/data/movie/models/modified_model.dart';
 import 'package:kk_movie_app/data/movie/models/movie_category_model.dart';
 import 'package:kk_movie_app/data/movie/models/movie_country_model.dart';
 import 'package:kk_movie_app/data/movie/models/tmdb_model.dart';

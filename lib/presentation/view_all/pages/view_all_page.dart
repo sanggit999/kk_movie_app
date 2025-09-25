@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kk_movie_app/common/widgets/base_app_bar.dart';
-import 'package:kk_movie_app/common/widgets/movie_card.dart';
+import 'package:kk_movie_app/common/widgets/appbar/base_app_bar.dart';
+import 'package:kk_movie_app/common/widgets/card/movie_card.dart';
 import 'package:kk_movie_app/domain/movie/entities/movie_entity.dart';
+import 'package:kk_movie_app/core/enums/movie_type.dart';
 import 'package:kk_movie_app/l10n/l10n.dart';
 import 'package:kk_movie_app/presentation/view_all/cubit/view_all_cubit.dart';
 import 'package:kk_movie_app/presentation/view_all/cubit/view_all_state.dart';
 import 'package:kk_movie_app/presentation/view_all/widgets/drop_down_menu_button.dart';
 
-class ViewAllSeriesMoviePage extends StatefulWidget {
-  const ViewAllSeriesMoviePage({super.key});
+class ViewAllPage extends StatefulWidget {
+  final MovieType type;
+  const ViewAllPage({super.key, required this.type});
 
   @override
-  State<ViewAllSeriesMoviePage> createState() => _ViewAllSeriesMoviePageState();
+  State<ViewAllPage> createState() => _ViewAllPageState();
 }
 
-class _ViewAllSeriesMoviePageState extends State<ViewAllSeriesMoviePage> {
+class _ViewAllPageState extends State<ViewAllPage> {
   late final ScrollController _scrollController;
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
       GlobalKey<RefreshIndicatorState>();
@@ -28,53 +30,59 @@ class _ViewAllSeriesMoviePageState extends State<ViewAllSeriesMoviePage> {
         state.hasMore &&
         position.maxScrollExtent > 0 &&
         position.pixels >= position.maxScrollExtent - 200) {
-      context.read<ViewAllCubit>().getViewAllSeriesMovie();
+      context.read<ViewAllCubit>().getViewAll();
     }
   }
 
   @override
   void initState() {
     super.initState();
-    context.read<ViewAllCubit>().getViewAllSeriesMovie();
+    context.read<ViewAllCubit>().getViewAll();
     _scrollController = ScrollController()..addListener(_onScroll);
+  }
+
+  String _getTitle(MovieType type) {
+    switch (type) {
+      case MovieType.cartoon:
+        return S.current.cartoon;
+      case MovieType.series:
+        return S.current.tvSeries;
+      case MovieType.single:
+        return S.current.movie;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final movieType = context.read<ViewAllCubit>().movieType;
     return Scaffold(
       appBar: BaseAppBar(
         hideLeading: false,
         centerTitle: false,
-        title: Text(
-          S.current.tvSeries,
-          style: const TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold),
-        ),
+        title: Text(_getTitle(movieType)),
         actions: const DropDownMenuButton(),
       ),
-      body: SafeArea(
-        child: BlocBuilder<ViewAllCubit, ViewAllState>(
-          buildWhen: (previous, current) {
-            return previous != current;
-          },
-          builder: (context, state) {
-            if (state.isViewAllSeriesMovieLoading) {
-              return Center(
-                child: CircularProgressIndicator(
-                  color: Theme.of(context).colorScheme.inversePrimary,
-                ),
-              );
-            }
-
-            if (state.errorViewAllSeriesMovie != null) {
-              return _errorText(state.errorViewAllSeriesMovie!);
-            }
-
-            return _viewAllSeriesMovie(
-              state.viewAllSeriesMovie,
-              state.isLoadingPage,
+      body: BlocBuilder<ViewAllCubit, ViewAllState>(
+        buildWhen: (previous, current) => previous != current,
+        builder: (context, state) {
+          if (state.isLoading && state.movies.isEmpty) {
+            return Center(
+              child: CircularProgressIndicator(
+                color: Theme.of(context).colorScheme.inversePrimary,
+              ),
             );
-          },
-        ),
+          }
+
+          if (state.error != null) {
+            return _errorText(state.error!);
+          }
+
+          return _viewAllCartoonMovie(
+            state.movies,
+            state.isLoadingPage,
+            state.hasMore,
+          );
+        },
       ),
     );
   }
@@ -87,16 +95,17 @@ class _ViewAllSeriesMoviePageState extends State<ViewAllSeriesMoviePage> {
     ),
   );
 
-  Widget _viewAllSeriesMovie(
+  Widget _viewAllCartoonMovie(
     List<MovieEntity> movieEntity,
     bool isLoadingPage,
+    bool hasMore,
   ) => RefreshIndicator(
     key: _refreshIndicatorKey,
     color: Theme.of(context).colorScheme.inversePrimary,
     backgroundColor: Theme.of(context).colorScheme.primary,
     strokeWidth: 2.0,
     onRefresh: () async {
-      await context.read<ViewAllCubit>().resetSeriesMovie();
+      await context.read<ViewAllCubit>().reset();
       if (_scrollController.hasClients) {
         _scrollController.animateTo(
           0,
@@ -110,7 +119,10 @@ class _ViewAllSeriesMoviePageState extends State<ViewAllSeriesMoviePage> {
         Expanded(
           child: GridView.builder(
             controller: _scrollController,
-            padding: const EdgeInsets.all(12.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16.0,
+              vertical: 16.0,
+            ),
             shrinkWrap: true,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
@@ -132,6 +144,16 @@ class _ViewAllSeriesMoviePageState extends State<ViewAllSeriesMoviePage> {
           Center(
             child: CircularProgressIndicator(
               color: Theme.of(context).colorScheme.inversePrimary,
+            ),
+          )
+        else if (!hasMore)
+          Center(
+            child: Text(
+              "Đã tải hết dữ liệu",
+              style: TextStyle(
+                fontSize: 14.0,
+                color: Theme.of(context).hintColor,
+              ),
             ),
           ),
       ],

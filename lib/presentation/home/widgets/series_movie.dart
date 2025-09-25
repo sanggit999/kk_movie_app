@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kk_movie_app/common/widgets/movie_card.dart';
+import 'package:kk_movie_app/common/widgets/card/movie_card.dart';
 import 'package:kk_movie_app/common/widgets/shimmer/list_view_shimmer.dart';
 import 'package:kk_movie_app/domain/movie/entities/movie_entity.dart';
+import 'package:kk_movie_app/core/enums/movie_type.dart';
 import 'package:kk_movie_app/l10n/l10n.dart';
 import 'package:kk_movie_app/presentation/home/cubit/home_cubit.dart';
 import 'package:kk_movie_app/presentation/home/cubit/home_state.dart';
@@ -45,7 +46,7 @@ class SeriesMovie extends StatelessWidget {
     ),
     trailing: TextButton(
       onPressed: () {
-        context.push(AppRoutes.viewAllSeries);
+        context.push(AppRoutes.viewAll,extra: MovieType.series);
         print('View all Series button pressed');
       },
       child: Text(

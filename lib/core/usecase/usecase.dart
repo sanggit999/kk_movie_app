@@ -1,3 +1,6 @@
+
+import 'package:kk_movie_app/core/enums/movie_type.dart';
+
 abstract class UseCase<T, Params> {
   Future<T> call(Params params);
 }
@@ -7,12 +10,14 @@ class NoParams {
 }
 
 class GetViewAllParams {
-  final int page;
+  final MovieType movieType;
+  final int? page;
   final String? sortType;
   final String? sortLang;
 
   GetViewAllParams({
-    required this.page,
+    required this.movieType,
+    this.page,
     this.sortType,
     this.sortLang,
   });
