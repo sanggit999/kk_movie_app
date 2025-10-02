@@ -15,7 +15,6 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     context.read<AuthCubit>().checkAuth();
   }
@@ -25,9 +24,7 @@ class _SplashPageState extends State<SplashPage> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 25, 25, 25),
       body: BlocListener<AuthCubit, AuthState>(
-        listenWhen: (previous, current) {
-          return current is Authenticated || current is Unauthenticated;
-        },
+        listenWhen: (previous, current) => previous != current,
         listener: (context, state) {
           if (state is Authenticated) {
             context.go(AppRoutes.home);

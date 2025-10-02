@@ -71,6 +71,10 @@
   "description": "Nội dung phim",
 
   "noData": "Không có dữ liệu",
+  "noMovie": "Không tìm thấy phim nào",
+  "removeSearchHistory": "Xóa khỏi lịch sử tìm kiếm?",
+  "remove": "Xoá",
+  "cancel": "Huỷ",
 
   "english": "Tiếng Anh",
   "vietnamese": "Tiếng Việt"

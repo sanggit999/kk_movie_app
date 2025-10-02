@@ -65,6 +65,7 @@ class _ViewAllPageState extends State<ViewAllPage> {
       body: BlocBuilder<ViewAllCubit, ViewAllState>(
         buildWhen: (previous, current) => previous != current,
         builder: (context, state) {
+          print("👉 rebuild với state: $state");
           if (state.isLoading && state.movies.isEmpty) {
             return Center(
               child: CircularProgressIndicator(

@@ -11,12 +11,12 @@ class CategoryInitial extends CategoryState {}
 class CategoryLoading extends CategoryState {}
 
 class CategoryLoaded extends CategoryState {
-  final List<CategoryEntity> categoryEntity;
+  final List<CategoryEntity> categories;
 
-  CategoryLoaded({required this.categoryEntity});
+  CategoryLoaded({required this.categories});
 
   @override
-  List<Object?> get props => [categoryEntity];
+  List<Object?> get props => [categories];
 }
 
 class CategoryError extends CategoryState {

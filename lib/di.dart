@@ -10,6 +10,8 @@ import 'package:kk_movie_app/data/category/data_source/category_api_service.dart
 import 'package:kk_movie_app/data/category/repositories_impl/category_repository_impl.dart';
 import 'package:kk_movie_app/data/movie/data_sources/movie_api_service.dart';
 import 'package:kk_movie_app/data/movie/repositories_impl/movie_repository_impl.dart';
+import 'package:kk_movie_app/data/search/data_sources/search_api_service.dart';
+import 'package:kk_movie_app/data/search/repositories_impl/search_repository_impl.dart';
 import 'package:kk_movie_app/domain/auth/repositories/auth_repository.dart';
 import 'package:kk_movie_app/domain/auth/usecases/get_current_user_usecase.dart';
 import 'package:kk_movie_app/domain/auth/usecases/send_password_reset_email_usecase.dart';
@@ -27,6 +29,12 @@ import 'package:kk_movie_app/domain/movie/usecases/get_new_movie_usecase.dart';
 import 'package:kk_movie_app/domain/movie/usecases/get_series_movie_usecase.dart';
 import 'package:kk_movie_app/domain/movie/usecases/get_single_movie_usecase.dart';
 import 'package:kk_movie_app/domain/movie/usecases/get_view_all_movies_usecase.dart';
+import 'package:kk_movie_app/domain/search/repositories/search_repository.dart';
+import 'package:kk_movie_app/domain/search/usecases/clear_search_history_usecase.dart';
+import 'package:kk_movie_app/domain/search/usecases/delete_search_history_item_usecase.dart';
+import 'package:kk_movie_app/domain/search/usecases/get_search_history_usecase.dart';
+import 'package:kk_movie_app/domain/search/usecases/save_search_history_usecase.dart';
+import 'package:kk_movie_app/domain/search/usecases/search_movie_usecase.dart';
 import 'package:kk_movie_app/presentation/auth/cubit/auth_cubit.dart';
 import 'package:http/http.dart' as http;
 import 'package:kk_movie_app/presentation/movie_detail/cubit/movie_detail_cubit.dart';
@@ -54,6 +62,11 @@ Future<void> initDependencies() async {
   getIt.registerLazySingleton<CategoryApiService>(
     () => CategoryApiServiceImpl(apiClient: getIt<ApiClient>()),
   );
+
+  getIt.registerLazySingleton<SearchApiService>(
+    () => SearchApiServiceImpl(apiClient: getIt<ApiClient>()),
+  );
+
   //Repositories
   getIt.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl());
 
@@ -62,6 +75,8 @@ Future<void> initDependencies() async {
   getIt.registerLazySingleton<CategoryRepository>(
     () => CategoryRepositoryImpl(),
   );
+
+  getIt.registerLazySingleton<SearchRepository>(() => SearchRepositoryImpl());
 
   //UseCases
   //Auth
@@ -91,7 +106,6 @@ Future<void> initDependencies() async {
   getIt.registerLazySingleton<GetViewAllMoviesUseCase>(
     () => GetViewAllMoviesUseCase(),
   );
-
   getIt.registerLazySingleton<GetMovieDetailUseCase>(
     () => GetMovieDetailUseCase(),
   );
@@ -101,6 +115,20 @@ Future<void> initDependencies() async {
   );
   getIt.registerLazySingleton<GetCategoryDetailUseCase>(
     () => GetCategoryDetailUseCase(),
+  );
+  //Searches
+  getIt.registerLazySingleton<SearchMovieUseCase>(() => SearchMovieUseCase());
+  getIt.registerLazySingleton<GetSearchHistoryUseCase>(
+    () => GetSearchHistoryUseCase(),
+  );
+  getIt.registerLazySingleton<SaveSearchHistoryUseCase>(
+    () => SaveSearchHistoryUseCase(),
+  );
+  getIt.registerLazySingleton<DeleteSearchHistoryItemUseCase>(
+    () => DeleteSearchHistoryItemUseCase(),
+  );
+  getIt.registerLazySingleton<ClearSearchHistoryUseCase>(
+    () => ClearSearchHistoryUseCase(),
   );
   //Cubits
   getIt.registerSingleton<LanguageCubit>(LanguageCubit());

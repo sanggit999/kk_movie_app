@@ -10,17 +10,13 @@ abstract class MovieApiService {
   Future<List<MovieModel>> getSeriesMovie();
   Future<List<MovieModel>> getSingleMovie();
   Future<List<MovieModel>> getCartoonMovie();
-
   Future<List<MovieModel>> getViewAllMovies(
     MovieType? type, {
     int? page,
     String? sortType,
     String? sortLang,
   });
-
   Future<MovieDetailModel> getMovieDetail(String slug);
-
-  Future<List<MovieModel>> searchMovie(String keyword);
 }
 
 class MovieApiServiceImpl implements MovieApiService {
@@ -110,13 +106,5 @@ class MovieApiServiceImpl implements MovieApiService {
     } catch (e) {
       throw ServerException(message: e.toString());
     }
-  }
-
-  @override
-  Future<List<MovieModel>> searchMovie(String keyword) {
-    return _fetchMovies(
-      "${ApiUrl.movieSearch}?keyword=$keyword",
-      hasDataKey: true,
-    );
   }
 }

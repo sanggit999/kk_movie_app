@@ -100,53 +100,52 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                                 ),
                               ),
 
-                              Wrap(
-                                spacing: 16.0,
-                                runSpacing: 18.0,
-                                children: List.generate(servers.length, (
-                                  index,
-                                ) {
-                                  final isSelected =
-                                      selection.serverIndex == index;
+                              GridView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: servers.length,
+                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 16,
+                                  mainAxisSpacing: 18,
+                                  childAspectRatio: 3.5,
+                                ),
+                                itemBuilder: (context, index) {
+                                  final isSelected = selection.serverIndex == index;
                                   return SelectableChip(
                                     label: servers[index].serverName,
                                     isSelected: isSelected,
                                     onTap: () {
-                                      context
-                                          .read<EpisodeSelectionCubit>()
-                                          .selectServer(index);
-                                      debugPrint(
-                                        "Chọn server: ${servers[index].serverName}",
-                                      );
+                                      context.read<EpisodeSelectionCubit>().selectServer(index);
+                                      debugPrint("Chọn server: ${servers[index].serverName}");
                                     },
                                   );
-                                }),
+                                },
                               ),
 
-                              Wrap(
-                                spacing: 8.0,
-                                runSpacing: 8.0,
-                                children: List.generate(
-                                  currentServer.serverData.length,
-                                  (index) {
-                                    final ep = currentServer.serverData[index];
-                                    final isSelected =
-                                        selection.episodeIndex == index;
-                                    return SelectableChip(
-                                      label: isEnglish
-                                          ? "Episode ${index + 1}"
-                                          : ep.name,
-                                      isSelected: isSelected,
-                                      width: 120,
-                                      onTap: () {
-                                        context
-                                            .read<EpisodeSelectionCubit>()
-                                            .selectEpisode(index);
-                                        debugPrint("Chọn tập: ${ep.name}");
-                                      },
-                                    );
-                                  },
+                              GridView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: currentServer.serverData.length,
+                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3,
+                                  crossAxisSpacing: 10,
+                                  mainAxisSpacing: 10,
+                                  childAspectRatio: 2.5,
                                 ),
+                                itemBuilder: (context, index) {
+                                  final ep = currentServer.serverData[index];
+                                  final isSelected = selection.episodeIndex == index;
+                                  return SelectableChip(
+                                    label: isEnglish ? "Episode ${index + 1}" : ep.name,
+                                    isSelected: isSelected,
+                                    width: double.infinity, // full width trong cell grid
+                                    onTap: () {
+                                      context.read<EpisodeSelectionCubit>().selectEpisode(index);
+                                      debugPrint("Chọn tập: ${ep.name}");
+                                    },
+                                  );
+                                },
                               ),
 
                               _infoRow(

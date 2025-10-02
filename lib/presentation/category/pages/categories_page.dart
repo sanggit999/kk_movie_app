@@ -26,7 +26,7 @@ class CategoriesPage extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             }
             if (state is CategoryLoaded) {
-              return _categoriesCard(state.categoryEntity);
+              return _categoriesCard(state.categories);
             }
             if (state is CategoryError) {
               return Center(child: Text("Error: ${state.message}"));
@@ -52,7 +52,7 @@ class CategoriesPage extends StatelessWidget {
           final category = categoryEntity[index];
           return GestureDetector(
             onTap: () {
-              context.pushNamed(AppRoutes.categoryDetail,extra: category);
+              context.pushNamed(AppRoutes.categoryDetail, extra: category);
               print('On tap Categories ok');
             },
             child: Container(

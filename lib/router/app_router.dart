@@ -12,6 +12,8 @@ import 'package:kk_movie_app/presentation/home/cubit/home_cubit.dart';
 import 'package:kk_movie_app/presentation/movie_detail/cubit/episode_election_cubit.dart';
 import 'package:kk_movie_app/presentation/movie_detail/cubit/movie_detail_cubit.dart';
 import 'package:kk_movie_app/presentation/movie_detail/pages/movie_detail_page.dart';
+import 'package:kk_movie_app/presentation/search/cubit/search_history_cubit.dart';
+import 'package:kk_movie_app/presentation/search/cubit/search_movie_cubit.dart';
 import 'package:kk_movie_app/presentation/view_all/cubit/view_all_cubit.dart';
 import 'package:kk_movie_app/presentation/view_all/pages/view_all_page.dart';
 import 'package:kk_movie_app/router/app_routes.dart';
@@ -107,8 +109,15 @@ class AppRouter {
               GoRoute(
                 path: AppRoutes.search,
                 name: AppRoutes.search,
-                pageBuilder: (context, state) =>
-                    const NoTransitionPage(child: SearchPage()),
+                pageBuilder: (context, state) => NoTransitionPage(
+                  child: MultiBlocProvider(
+                    providers: [
+                      BlocProvider(create: (_) => SearchMovieCubit()),
+                      BlocProvider(create: (_) => SearchHistoryCubit()),
+                    ],
+                    child: const SearchPage(),
+                  ),
+                ),
               ),
             ],
           ),

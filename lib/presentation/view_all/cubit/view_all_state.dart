@@ -51,4 +51,15 @@ class ViewAllState extends Equatable {
     sortType,
     sortLang,
   ];
+
+  @override
+  String toString() {
+    return 'ViewAllState(movies: ${movies.length}, '
+        'isLoading: $isLoading, '
+        'isLoadingPage: $isLoadingPage, '
+        'hasMore: $hasMore, '
+        'error: $error, '
+        'sortType: $sortType, '
+        'sortLang: $sortLang)';
+  }
 }

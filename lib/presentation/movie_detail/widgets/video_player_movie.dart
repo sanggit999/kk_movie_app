@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:kk_movie_app/l10n/l10n.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:video_player/video_player.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 
 class VideoPlayerMovie extends StatefulWidget {
   final String videoUrl;
@@ -51,6 +52,14 @@ class _VideoPlayerMovieState extends State<VideoPlayerMovie> {
         allowedScreenSleep: false,
       );
 
+      controller.addListener(() {
+        if (controller.value.isPlaying) {
+          WakelockPlus.enable();
+        } else {
+          WakelockPlus.disable();
+        }
+      });
+
       setState(() {
         _videoPlayerController = controller;
         _chewieController = chewie;
@@ -69,6 +78,7 @@ class _VideoPlayerMovieState extends State<VideoPlayerMovie> {
     _videoPlayerController?.dispose();
     _chewieController = null;
     _videoPlayerController = null;
+    WakelockPlus.disable();
   }
 
   @override
@@ -116,7 +126,10 @@ class _VideoPlayerMovieState extends State<VideoPlayerMovie> {
     }
 
     return ClipRRect(
-      borderRadius: BorderRadius.circular(8.0),
+      borderRadius: const BorderRadius.only(
+        bottomLeft: Radius.circular(8.0),
+        bottomRight: Radius.circular(8.0),
+      ),
       child: AspectRatio(
         aspectRatio: 16 / 9,
         child: Chewie(controller: _chewieController!),

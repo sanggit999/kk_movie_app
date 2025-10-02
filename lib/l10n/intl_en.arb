@@ -70,7 +70,11 @@
   "country": "Country",
   "description": "Movie description",
 
-  "noData": "Không có dữ liệu",
+  "noData": "No data",
+  "noMovie": "No movies found",
+  "removeSearchHistory": "Remove from search history?",
+  "remove": "Remove",
+  "cancel": "Cancel",
 
   "english": "English",
   "vietnamese": "Vietnamese"

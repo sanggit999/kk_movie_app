@@ -9,15 +9,11 @@ abstract class MovieRepository {
   Future<Either<Failure, List<MovieEntity>>> getSeriesMovie();
   Future<Either<Failure, List<MovieEntity>>> getSingleMovie();
   Future<Either<Failure, List<MovieEntity>>> getCartoonMovie();
-
   Future<Either<Failure, List<MovieEntity>>> getViewAllMovies(
     MovieType? type, {
     int? page,
     String? sortType,
     String? sortLang,
   });
-
   Future<Either<Failure, MovieDetailEntity>> getMovieDetail(String slug);
-
-  Future<Either<Failure,MovieEntity>> searchMovie(String keyword);
 }

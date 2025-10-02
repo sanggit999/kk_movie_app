@@ -81,10 +81,4 @@ class MovieRepositoryImpl implements MovieRepository {
       return Left(ServerFailure(message: e.toString()));
     }
   }
-
-  @override
-  Future<Either<Failure, MovieEntity>> searchMovie(String keyword)  async{
-    // TODO: implement searchMovie
-    throw UnimplementedError();
-  }
 }

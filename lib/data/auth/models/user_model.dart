@@ -8,9 +8,9 @@ abstract class UserModel with _$UserModel {
     @Default('') String uid,
     @Default('') String name,
     @Default('') String email,
-    @Default('') String avatarUrl,
+    @Default('') @JsonKey(name: 'avatar_url') String avatarUrl,
     @Default('') String provider,
-    @Default(null) DateTime? createdAt,
+    @Default(null) @JsonKey(name: 'created_at') DateTime? createdAt,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

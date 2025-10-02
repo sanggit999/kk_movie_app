@@ -16,7 +16,7 @@ class CategoryCubit extends Cubit<CategoryState> {
         emit(CategoryError(message: error.message!));
       },
       (data) {
-        emit(CategoryLoaded(categoryEntity: data));
+        emit(CategoryLoaded(categories: data));
       },
     );
   }

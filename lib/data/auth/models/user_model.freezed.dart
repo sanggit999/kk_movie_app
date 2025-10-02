@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserModel {
 
- String get uid; String get name; String get email; String get avatarUrl; String get provider; DateTime? get createdAt;
+ String get uid; String get name; String get email;@JsonKey(name: 'avatar_url') String get avatarUrl; String get provider;@JsonKey(name: 'created_at') DateTime? get createdAt;
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $UserModelCopyWith<$Res>  {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) _then) = _$UserModelCopyWithImpl;
 @useResult
 $Res call({
- String uid, String name, String email, String avatarUrl, String provider, DateTime? createdAt
+ String uid, String name, String email,@JsonKey(name: 'avatar_url') String avatarUrl, String provider,@JsonKey(name: 'created_at') DateTime? createdAt
 });
 
 
@@ -158,7 +158,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String uid,  String name,  String email,  String avatarUrl,  String provider,  DateTime? createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String uid,  String name,  String email, @JsonKey(name: 'avatar_url')  String avatarUrl,  String provider, @JsonKey(name: 'created_at')  DateTime? createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
 return $default(_that.uid,_that.name,_that.email,_that.avatarUrl,_that.provider,_that.createdAt);case _:
@@ -179,7 +179,7 @@ return $default(_that.uid,_that.name,_that.email,_that.avatarUrl,_that.provider,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String uid,  String name,  String email,  String avatarUrl,  String provider,  DateTime? createdAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String uid,  String name,  String email, @JsonKey(name: 'avatar_url')  String avatarUrl,  String provider, @JsonKey(name: 'created_at')  DateTime? createdAt)  $default,) {final _that = this;
 switch (_that) {
 case _UserModel():
 return $default(_that.uid,_that.name,_that.email,_that.avatarUrl,_that.provider,_that.createdAt);case _:
@@ -199,7 +199,7 @@ return $default(_that.uid,_that.name,_that.email,_that.avatarUrl,_that.provider,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String uid,  String name,  String email,  String avatarUrl,  String provider,  DateTime? createdAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String uid,  String name,  String email, @JsonKey(name: 'avatar_url')  String avatarUrl,  String provider, @JsonKey(name: 'created_at')  DateTime? createdAt)?  $default,) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
 return $default(_that.uid,_that.name,_that.email,_that.avatarUrl,_that.provider,_that.createdAt);case _:
@@ -214,15 +214,15 @@ return $default(_that.uid,_that.name,_that.email,_that.avatarUrl,_that.provider,
 @JsonSerializable()
 
 class _UserModel implements UserModel {
-  const _UserModel({this.uid = '', this.name = '', this.email = '', this.avatarUrl = '', this.provider = '', this.createdAt = null});
+  const _UserModel({this.uid = '', this.name = '', this.email = '', @JsonKey(name: 'avatar_url') this.avatarUrl = '', this.provider = '', @JsonKey(name: 'created_at') this.createdAt = null});
   factory _UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 
 @override@JsonKey() final  String uid;
 @override@JsonKey() final  String name;
 @override@JsonKey() final  String email;
-@override@JsonKey() final  String avatarUrl;
+@override@JsonKey(name: 'avatar_url') final  String avatarUrl;
 @override@JsonKey() final  String provider;
-@override@JsonKey() final  DateTime? createdAt;
+@override@JsonKey(name: 'created_at') final  DateTime? createdAt;
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
@@ -257,7 +257,7 @@ abstract mixin class _$UserModelCopyWith<$Res> implements $UserModelCopyWith<$Re
   factory _$UserModelCopyWith(_UserModel value, $Res Function(_UserModel) _then) = __$UserModelCopyWithImpl;
 @override @useResult
 $Res call({
- String uid, String name, String email, String avatarUrl, String provider, DateTime? createdAt
+ String uid, String name, String email,@JsonKey(name: 'avatar_url') String avatarUrl, String provider,@JsonKey(name: 'created_at') DateTime? createdAt
 });
 
 

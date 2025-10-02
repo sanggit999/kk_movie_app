@@ -20,7 +20,7 @@ class SelectableChip extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: width,
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(4.0),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.secondary,
           borderRadius: BorderRadius.circular(8.0),
@@ -31,13 +31,15 @@ class SelectableChip extends StatelessWidget {
             width: 1,
           ),
         ),
-        child: Text(
-          label,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.inversePrimary,
-            fontSize: 14.0,
-            fontWeight: FontWeight.w500,
+        child: Center(
+          child: Text(
+            label,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.inversePrimary,
+              fontSize: 14.0,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
       ),

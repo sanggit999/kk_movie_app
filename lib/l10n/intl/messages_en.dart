@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "OK": MessageLookupByLibrary.simpleMessage("OK"),
     "actor": MessageLookupByLibrary.simpleMessage("Actor"),
     "appTitle": MessageLookupByLibrary.simpleMessage("KK Movies"),
+    "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "cartoon": MessageLookupByLibrary.simpleMessage("Cartoon"),
     "categories": MessageLookupByLibrary.simpleMessage("Categories"),
     "category": MessageLookupByLibrary.simpleMessage("Category"),
@@ -67,7 +68,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "Don\'t have an account? ",
     ),
     "noConnection": MessageLookupByLibrary.simpleMessage("No connection"),
-    "noData": MessageLookupByLibrary.simpleMessage("Không có dữ liệu"),
+    "noData": MessageLookupByLibrary.simpleMessage("No data"),
+    "noMovie": MessageLookupByLibrary.simpleMessage("No movies found"),
     "notification": MessageLookupByLibrary.simpleMessage("Notification"),
     "oldest": MessageLookupByLibrary.simpleMessage("Oldest"),
     "operationNotAllowed": MessageLookupByLibrary.simpleMessage(
@@ -90,6 +92,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "releaseYear": MessageLookupByLibrary.simpleMessage("Release year"),
+    "remove": MessageLookupByLibrary.simpleMessage("Remove"),
+    "removeSearchHistory": MessageLookupByLibrary.simpleMessage(
+      "Remove from search history?",
+    ),
     "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
     "resetPasswordRequestSuccess": MessageLookupByLibrary.simpleMessage(
       "Password reset request successful. Please check your email (including the spam folder).",

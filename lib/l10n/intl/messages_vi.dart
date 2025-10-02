@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "OK": MessageLookupByLibrary.simpleMessage("OK"),
     "actor": MessageLookupByLibrary.simpleMessage("Diễn viên"),
     "appTitle": MessageLookupByLibrary.simpleMessage("KK Movies"),
+    "cancel": MessageLookupByLibrary.simpleMessage("Huỷ"),
     "cartoon": MessageLookupByLibrary.simpleMessage("Phim hoạt hình"),
     "categories": MessageLookupByLibrary.simpleMessage("Thể loại"),
     "category": MessageLookupByLibrary.simpleMessage("Thể loại"),
@@ -70,6 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noAccount": MessageLookupByLibrary.simpleMessage("Chưa có tài khoản? "),
     "noConnection": MessageLookupByLibrary.simpleMessage("Không có kết nối"),
     "noData": MessageLookupByLibrary.simpleMessage("Không có dữ liệu"),
+    "noMovie": MessageLookupByLibrary.simpleMessage("Không tìm thấy phim nào"),
     "notification": MessageLookupByLibrary.simpleMessage("Thông báo"),
     "oldest": MessageLookupByLibrary.simpleMessage("Cũ nhất"),
     "operationNotAllowed": MessageLookupByLibrary.simpleMessage(
@@ -92,6 +94,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "profile": MessageLookupByLibrary.simpleMessage("Hồ sơ"),
     "releaseYear": MessageLookupByLibrary.simpleMessage("Năm phát hành"),
+    "remove": MessageLookupByLibrary.simpleMessage("Xoá"),
+    "removeSearchHistory": MessageLookupByLibrary.simpleMessage(
+      "Xóa khỏi lịch sử tìm kiếm?",
+    ),
     "resetPassword": MessageLookupByLibrary.simpleMessage("Đặt lại mật khẩu"),
     "resetPasswordRequestSuccess": MessageLookupByLibrary.simpleMessage(
       "Yêu cầu đặt lại mật khẩu thành công. Vui lòng kiểm tra email (bao gồm cả hộp thư rác).",

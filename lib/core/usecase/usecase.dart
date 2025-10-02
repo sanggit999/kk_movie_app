@@ -23,3 +23,10 @@ class GetMovieParams {
     this.sortLang,
   });
 }
+
+class SearchParams {
+  final String uid;
+  final String id;
+
+  SearchParams({required this.uid, required this.id});
+}

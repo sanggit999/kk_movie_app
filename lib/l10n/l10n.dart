@@ -524,9 +524,34 @@ class S {
     );
   }
 
-  /// `Không có dữ liệu`
+  /// `No data`
   String get noData {
-    return Intl.message('Không có dữ liệu', name: 'noData', desc: '', args: []);
+    return Intl.message('No data', name: 'noData', desc: '', args: []);
+  }
+
+  /// `No movies found`
+  String get noMovie {
+    return Intl.message('No movies found', name: 'noMovie', desc: '', args: []);
+  }
+
+  /// `Remove from search history?`
+  String get removeSearchHistory {
+    return Intl.message(
+      'Remove from search history?',
+      name: 'removeSearchHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove`
+  String get remove {
+    return Intl.message('Remove', name: 'remove', desc: '', args: []);
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message('Cancel', name: 'cancel', desc: '', args: []);
   }
 
   /// `English`
